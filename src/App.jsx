@@ -4,9 +4,8 @@ import Menu from "./componentes/Menu";
 import Main from "./componentes/Main";
 import Rodape from "./componentes/Rodape";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Detalhe from "./componentes/Detalhe";
+import DetalheProduto from "./componentes/DetalheProduto";
 import Login from "./componentes/Login";
-import Favoritos from "./componentes/Favoritos";
 import Carrinho from "./componentes/Carrinho";
 
 function App() {
@@ -23,9 +22,9 @@ function App() {
           <Route path="/feminino" element={<Main filtro="feminino" />} />
           <Route path="/especiais" element={<Main filtro="especiais" />} />
           <Route path="/ofertas" element={<Main filtro="ofertas" />} />
-          <Route path="/detalhe" element={<Detalhe />} />
+          <Route path="/detalhe" element={<DetalheProduto />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/favoritos" element={<Favoritos />} />
+          <Route path="/favoritos" element={<Main filtro="favoritos" />} />
           <Route path="/carrinho" element={<Carrinho />} />
         </Routes>
         <Rodape />

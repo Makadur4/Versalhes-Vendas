@@ -1,7 +1,7 @@
 import CardProduto from "./CardProduto";
 import Dados from "../dados/produtos";
 
-export default function ListaProduto() {
+export default function ListaProdutos() {
   const listaComponentes = Dados.map(function (item) {
     return (
       <CardProduto

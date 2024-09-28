@@ -1,11 +1,9 @@
 export default function () {
   return (
-    <div className="login">
+    <main className="login">
       <div>
         <div className="foto_perfil">
-          <h1>
-            <img src="/img/person-circle.svg" />
-          </h1>
+          <img src="/svg/icone_perfil_preto.svg" />
         </div>
         <label className="label" htmlFor="email">
           E-mail:
@@ -27,6 +25,6 @@ export default function () {
         <span>Não se cadastrou ainda?</span>
         <a href="">cadastre-se</a>
       </div>
-    </div>
+    </main>
   );
 }

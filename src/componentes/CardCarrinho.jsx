@@ -1,16 +1,19 @@
-export default function CardCarrinho() {
+export default function CardCarrinho(props) {
   return (
     <div className="moldura_produto">
       <div className="moldura_carrinho">
         <h1>
-          <img className="foto_dior_carrinho" src="/img/perfume1.png"></img>
+          <img
+            className="foto_dior_carrinho"
+            src={`/img/perfume${props.id}.png`}
+          />
         </h1>
       </div>
-      <div className="descricao">
+      <div className="descricao_carrinho">
         <div className="nome_produto">
-          <p>PERFUME DIOR SAUVAGE MASCULINO EAU DE TOILETTE</p>
+          <p>{props.nome}</p>
           <div className="opcao_produto">
-            <select>
+            <select value={props.quantidade}>
               <option>1</option>
               <option>2</option>
               <option>3</option>
@@ -27,7 +30,7 @@ export default function CardCarrinho() {
         </div>
       </div>
       <div className="valor_produto_carrinho">
-        <span>RS 199,99</span>
+        <span>R$ {props.preco}</span>
       </div>
     </div>
   );

@@ -1,99 +1,3 @@
-:root {
-
-    --cor-fundo: #d9d9d9;
-    --cor-primaria: #1388f3;
-    --cor-menu: #f2f2f2;
-    --cor-borda: #011162;
-    --cor-destaque: #0013C1;
-    --cor-houver: #87c1f7;
-    --cor-card: #ffffff;
-    --cor-foto: #E3E3E3;
-}
-
-body {
-    
-    margin: 0;
-    padding: 0;
-}
-
-a{
-    text-decoration: none;
-}
-
-button{
-    cursor: pointer;
-}
-
-/*DIV ROOT*/
-
-#root
-{
-    min-height: 100vh;
-    box-sizing: border-box;
-    border: solid 20px var(--cor-borda);
-    background-color: var(--cor-fundo);
-    display: flex;
-    flex-direction: column;
-}
-
-/*HEADER*/
-
-header {
-
-    background-color: var(--cor-primaria);
-    height: 80px;
-    display: flex;
-    justify-content: center;
-
-}
-
-.header{
-
-    width: 1250px;
-    display: flex;
-        
-}
-
-/* MAIN*/
-
-main{
-    flex-grow: 1;
-}
-
-/* BOTÕES */
-
-.grupo_botoes
-{
-    display: flex;
-    gap: 10px;
-    width: 100%;
-    justify-content: center;
-}
-
-.botao_destaque{
-    color:#ffffff;
-    background-color: var(--cor-destaque);
-    height: 30px;
-    border-radius: 5px;
-    border: solid;
-    border-width: 1px;
-    width: 80px; 
-    font-size: 15px;
-}
-
-.botao_branco{
-    background-color: #ffffff;
-    height: 30px;
-    border-radius: 5px;
-    border: solid;
-    border-width: 1px;
-    width: 80px; 
-    font-size: 15px;
-}
-
-
-/*------------------------------------------------------*/
-
 .main{
     display: flex;
     justify-content: center;
@@ -299,12 +203,6 @@ main{
     display: flex;
     align-items: center;
     flex-direction: column;
-    justify-content: center;
-}
-
-.foto_perfil{
-    padding: 20px;
-    text-align: center;
 }
 
 .foto_perfil img{
@@ -374,7 +272,6 @@ main{
 }
 
 .card_preco{
-    height: 450px;
     font-family: Arial, Helvetica, sans-serif;
 }
 
@@ -392,10 +289,6 @@ main{
     line-height: 23px;
 }
 
-.descricao_carrinho
-{
-    flex: 1;
-}
 
 .Estrelas img {
 
@@ -448,7 +341,6 @@ height: 23px;
   padding: 20px;
   box-sizing: border-box;
   justify-content: center;
-  align-items: center;
  
 }
 
@@ -480,11 +372,44 @@ h1 img{
     height: 25px;
 }
 
+:root {
+
+    --cor-fundo: #d9d9d9;
+    --cor-primaria: #1388f3;
+    --cor-menu: #f2f2f2;
+    --cor-borda: #011162;
+    --cor-destaque: #0013C1;
+    --cor-houver: #87c1f7;
+    --cor-card: #ffffff;
+    --cor-foto: #E3E3E3;
+}
 
 
+body {
+    border-style: solid;
+    border-width: 20px;
+    border-color: var(--cor-borda);
+    margin: 0;
+    padding: 0;
+    background-color: var(--cor-fundo);
+}
 
+header {
 
+    background-color: var(--cor-primaria);
+    height: 80px;
+    display: flex;
+    justify-content: center;
 
+}
+
+.Header
+{
+
+    width: 1250px;
+    display: flex;
+        
+}
 
 .Footer
 {

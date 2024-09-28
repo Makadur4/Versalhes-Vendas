@@ -2,9 +2,9 @@ import CardPreco from "./CardPreco";
 import Estrelas from "./Estrelas";
 import IconeFavorito from "./IconeFavorito";
 
-export default function Detalhe() {
+export default function DetalheProduto() {
   return (
-    <div className="detalhe">
+    <main className="detalhe">
       <div className="card_descricao">
         <div className="moldura">
           <h1>
@@ -37,7 +37,12 @@ export default function Detalhe() {
           </div>
         </div>
       </div>
-      <CardPreco />
-    </div>
+      <CardPreco
+        continuar={false}
+        preco="489,99"
+        parcelas="4"
+        parcela="122,49"
+      />
+    </main>
   );
 }

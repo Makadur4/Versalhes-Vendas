@@ -1,21 +1,30 @@
 import Banner from "./Banner";
-import ListaProduto from "./ListaProduto";
+import ListaProdutos from "./ListaProdutos";
+import ListaFavoritos from "./ListaFavoritos";
 import Filtro from "./Filtro";
 
 export default function Main(props) {
   let banner;
   let titulo;
   let filtro;
+  let lista;
 
   if (props.filtro == "") {
     banner = <Banner />;
+    lista = <ListaProdutos />;
   } else {
     titulo = (
       <h1>
-        <img src={`/img/${props.filtro}.svg`}></img>
+        <img src={`/svg/texto_${props.filtro}.svg`}></img>
       </h1>
     );
-    filtro = <Filtro />;
+
+    if (props.filtro == "favoritos") {
+      lista = <ListaFavoritos />;
+    } else {
+      filtro = <Filtro />;
+      lista = <ListaProdutos />;
+    }
   }
 
   return (
@@ -25,7 +34,7 @@ export default function Main(props) {
       <div className="main">
         <div className="div_main">
           {filtro}
-          <ListaProduto />
+          {lista}
         </div>
       </div>
     </main>

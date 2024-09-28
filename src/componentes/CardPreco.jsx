@@ -1,9 +1,28 @@
+import { Link } from "react-router-dom";
+
 export default function CardPreco(props) {
-  let botao;
+  let botao1;
+  let botao2;
+  let botao3;
+
+  if (props.continuar == false) {
+    botao1 = (
+      <Link to="/carrinho">
+        <button className="botao_comprar">
+          <img src="/svg/icone_carrinho_branco.svg"></img>Comprar
+        </button>
+      </Link>
+    );
+  }
 
   if (props.continuar == true) {
-    botao = (
-      <button className="botao_continuar_comprando">Continuar Comprando</button>
+    botao2 = <button className="botao_comprar">Finalizar</button>;
+    botao3 = (
+      <Link to="/">
+        <button className="botao_continuar_comprando">
+          Continuar Comprando
+        </button>
+      </Link>
     );
   }
 
@@ -11,10 +30,12 @@ export default function CardPreco(props) {
     <div className="card_preco">
       <div className="precos_produto">
         <div style={{ marginBottom: "10px" }}>
-          <span className="valor">R$ 389,99</span>
+          <span className="valor">R$ {props.preco}</span>
           <span className="a_vista">Á vista</span>
         </div>
-        <div style={{ marginBottom: "35px" }}>ou em 4x de 99,99 sem juros</div>
+        <div style={{ marginBottom: "35px" }}>
+          ou em {props.parcelas}x de {props.parcela} sem juros
+        </div>
       </div>
       <div className="calcular">
         <span>Calcular o frete</span>
@@ -26,10 +47,9 @@ export default function CardPreco(props) {
       <div className="valor_frete">
         <span>Valor do frete: R$ 0,00</span>
       </div>
-      <button className="botao_comprar">
-        <img src="/img/carrinho.svg"></img>Comprar
-      </button>
-      {botao}
+      {botao1}
+      {botao2}
+      {botao3}
     </div>
   );
 }

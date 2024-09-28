@@ -1,18 +1,23 @@
 import { Link } from "react-router-dom";
 
-export default function (props) {
+export default function CardFavorito(props) {
   return (
-    <div class="card">
-      <div class="foto">
-        {props.foto}
-        <img class="foto_perfume" src={`/img/perfume${props.id}.png`} />
+    <Link to="/detalhe">
+      <div class="card">
+        <div class="foto">
+          {props.foto}
+          <img class="foto_perfume" src={`/img/perfume${props.id}.png`} />
+        </div>
+        <div class="nome_produto">{props.nome}</div>
+        <div className="opcao_favoritos">
+          <Link to="/carrinho">
+            <img src="/svg/icone_carrinho_preto.svg"></img>
+          </Link>
+          <Link to="/">
+            <img src="/svg/icone_lixeira_preto.svg"></img>
+          </Link>
+        </div>
       </div>
-
-      <div class="nome_produto">{props.nome}</div>
-      <div className="opcao_favoritos">
-        <img src="/img/carrinho-black.svg"></img>
-        <img src="/img/trash.svg"></img>
-      </div>
-    </div>
+    </Link>
   );
 }
