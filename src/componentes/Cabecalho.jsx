@@ -20,13 +20,13 @@ export default function Cabecalho() {
         </div>
         <div id="icones">
           <Link to="/login">
-            <img class="icone" src="/svg/icone_perfil_branco.svg" />
+            <img className="icone" src="/svg/icone_perfil_branco.svg" />
           </Link>
           <Link to="/favoritos">
-            <img class="icone" src="/svg/icone_coracao_branco.svg" />
+            <img className="icone" src="/svg/icone_coracao_branco.svg" />
           </Link>
           <Link to="/carrinho">
-            <img class="icone" src="/svg/icone_carrinho_branco.svg" />
+            <img className="icone" src="/svg/icone_carrinho_branco.svg" />
           </Link>
         </div>
       </div>

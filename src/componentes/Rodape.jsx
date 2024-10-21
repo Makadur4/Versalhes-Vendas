@@ -2,11 +2,11 @@ function Links() {
   return (
     <div id="links">
       <ul id="lista_links">
-        <li class="objeto_links">Sobre Nós</li>
-        <li class="objeto_links">|</li>
-        <li class="objeto_links">Ajuda</li>
-        <li class="objeto_links">|</li>
-        <li class="objeto_links">Contato</li>
+        <li className="objeto_links">Sobre Nós</li>
+        <li className="objeto_links">|</li>
+        <li className="objeto_links">Ajuda</li>
+        <li className="objeto_links">|</li>
+        <li className="objeto_links">Contato</li>
       </ul>
     </div>
   );

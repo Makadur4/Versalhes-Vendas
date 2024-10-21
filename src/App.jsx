@@ -22,7 +22,7 @@ function App() {
           <Route path="/feminino" element={<Main filtro="feminino" />} />
           <Route path="/especiais" element={<Main filtro="especiais" />} />
           <Route path="/ofertas" element={<Main filtro="ofertas" />} />
-          <Route path="/detalhe" element={<DetalheProduto />} />
+          <Route path="/detalhe/:idPerfume" element={<DetalheProduto />} />
           <Route path="/login" element={<Login />} />
           <Route path="/favoritos" element={<Main filtro="favoritos" />} />
           <Route path="/carrinho" element={<Carrinho />} />

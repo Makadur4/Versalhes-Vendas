@@ -1,47 +1,62 @@
+import axios from "axios";
 import CardPreco from "./CardPreco";
 import Estrelas from "./Estrelas";
 import IconeFavorito from "./IconeFavorito";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 
 export default function DetalheProduto() {
+  const { idPerfume } = useParams();
+  const [dados, setDados] = useState();
+
+  function CarregarDadosProduto() {
+    axios
+      .get(`http://localhost:8080/perfume/${idPerfume}`)
+      .then(function (response) {
+        let perfume = response.data;
+
+        let valor = perfume.precoNormal;
+        let valorNumerico = parseFloat(valor);
+        let resultado = (valorNumerico / 4).toFixed(2);
+
+        perfume.precoParcela = resultado;
+        setDados(perfume);
+      })
+      .catch(function (erro) {
+        alert("Não foi possível executar operação!");
+        console.log(erro);
+      });
+  }
+
+  useEffect(CarregarDadosProduto, []);
+
   return (
     <main className="detalhe">
       <div className="card_descricao">
         <div className="moldura">
           <h1>
-            <img className="foto_dior" src="/img/perfume1.png"></img>
+            <img
+              className="foto_dior"
+              src={`http://localhost:8080/imagem/${idPerfume}`}
+            ></img>
           </h1>
         </div>
         <div className="descricao">
           <div className="nome_produto">
-            <p>PERFUME DIOR SAUVAGE MASCULINO EAU DE TOILETTE</p>
+            <p>{dados && dados.nome}</p>
           </div>
           <div className="icones_produto">
-            <Estrelas nivel="5" />
+            <Estrelas nivel={dados && dados.mediaAvaliacao} />
             <IconeFavorito />
           </div>
-          <div className="descricao_produto">
-            <p>
-              François Demachy, perfumista-Criador de Dior, inspirou-se no
-              deserto, na hora mágica do crepúsculo. Misturado com a frieza da
-              noite, o ar ardente do deserto exala fragrâncias profundas. Na
-              hora em que os lobos saem e o céu é incendiado, uma nova magia se
-              desenrola.
-            </p>
-            <p>
-              A bergamota da Calábria, tão suculenta e espirituosa como sempre,
-              convida novas notas picantes a aumentar a plenitude e a
-              sensualidade, já que o rastro ambarado do Ambroxan® está envolto
-              nos acentos esfumados do absoluto da baunilha de Papua Nova Guiné,
-              para maior virilidade.
-            </p>
-          </div>
+          <div className="descricao_produto">{dados && dados.descricao}</div>
         </div>
       </div>
       <CardPreco
         continuar={false}
-        preco="489,99"
+        preco={dados && dados.precoNormal}
         parcelas="4"
-        parcela="122,49"
+        parcela={dados && dados.precoParcela}
       />
     </main>
   );

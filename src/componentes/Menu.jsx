@@ -4,22 +4,22 @@ export default function Menu() {
   return (
     <nav>
       <ul id="lista">
-        <li class="objetos_das_listas">
+        <li className="objetos_das_listas">
           <Link to="/masculino">
             <img src="/svg/texto_masculino.svg" />
           </Link>
         </li>
-        <li class="objetos_das_listas">
+        <li className="objetos_das_listas">
           <Link to="/feminino">
             <img src="/svg/texto_feminino.svg" />
           </Link>
         </li>
-        <li class="objetos_das_listas">
+        <li className="objetos_das_listas">
           <Link to="/especiais">
             <img src="/svg/texto_especiais.svg" />
           </Link>
         </li>
-        <li class="objetos_das_listas">
+        <li className="objetos_das_listas">
           <Link to="/ofertas">
             <img src="/svg/texto_ofertas.svg" />
           </Link>

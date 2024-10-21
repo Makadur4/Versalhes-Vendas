@@ -1,14 +1,32 @@
+import { useEffect, useState } from "react";
 import CardProduto from "./CardProduto";
-import Dados from "../dados/produtos";
+import axios from "axios";
 
 export default function ListaProdutos() {
-  const listaComponentes = Dados.map(function (item) {
+  const [lista, setLista] = useState([]);
+
+  function CarrergarListaProdutos() {
+    axios
+      .get(`http://localhost:8080/perfume`)
+      .then(function (response) {
+        setLista(response.data);
+      })
+      .catch(function (erro) {
+        alert("Não foi possível executar operação!");
+        console.log(erro);
+      });
+  }
+
+  useEffect(CarrergarListaProdutos, []);
+
+  const listaComponentes = lista.map(function (item) {
     return (
       <CardProduto
-        id={item.id}
-        nome={item.nome}
-        preco={item.preco}
-        parcelas_produto={item.parcelas}
+        key={item.idPerfume}
+        IdPerfume={item.idPerfume}
+        Nome={item.nome}
+        PrecoNormal={item.precoNormal}
+        Parcelas={4}
       />
     );
   });

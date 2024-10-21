@@ -62,7 +62,7 @@ export default function () {
             </li>
           </ul>
         </div>
-        <div class="grupo_botoes">
+        <div className="grupo_botoes">
           <button className="botao_destaque">Aplicar</button>
           <button className="botao_branco">Limpar</button>
         </div>

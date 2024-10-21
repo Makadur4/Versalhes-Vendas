@@ -2,21 +2,23 @@ import { Link } from "react-router-dom";
 
 export default function (props) {
   return (
-    <Link to="/detalhe">
-      <div class="card">
-        <div class="foto">
-          {props.foto}
-          <img class="foto_perfume" src={`/img/perfume${props.id}.png`} />
+    <Link to={`/detalhe/${props.IdPerfume}`}>
+      <div className="card">
+        <div className="foto">
+          <img
+            className="foto_perfume"
+            src={`http://localhost:8080/imagem/${props.IdPerfume}`}
+          />
         </div>
 
-        <div class="nome_produto">{props.nome}</div>
+        <div className="nome_produto">{props.Nome}</div>
 
-        <div class="preco_produto">
-          <span>{props.preco} à vista</span>
+        <div className="preco_produto">
+          <span>{props.PrecoNormal} à vista</span>
         </div>
 
-        <div class="parcelas_produto">
-          ou em {props.parcelas_produto}x sem juros
+        <div className="parcelas_produto">
+          ou em {props.Parcelas}x sem juros
         </div>
       </div>
     </Link>
