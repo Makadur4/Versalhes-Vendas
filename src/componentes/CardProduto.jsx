@@ -14,7 +14,7 @@ export default function (props) {
         <div className="nome_produto">{props.Nome}</div>
 
         <div className="preco_produto">
-          <span>{props.PrecoNormal} à vista</span>
+          <span>{props.PrecoNormal},00 à vista</span>
         </div>
 
         <div className="parcelas_produto">

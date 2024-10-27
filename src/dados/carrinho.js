@@ -2,13 +2,13 @@ const JSON = [
     {
         "id": 1,
         "nome": "PERFUME DIOR SAUVAGE MASCULINO EAU DE TOILETTE",
-        "preco": 489.99,
-        "quantidade":2
+        "preco": 600.00,
+        "quantidade":1
     },
     {
         "id": 2,
         "nome": "PERFUME K DOLCE & GABANNA MASCULINO EAU DE TOILETTE",
-        "preco": 589.99,
+        "preco": 700.00,
         "quantidade": 1
     },
     

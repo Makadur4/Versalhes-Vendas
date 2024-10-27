@@ -11,9 +11,9 @@ export default function Carrinho() {
       </div>
       <CardPreco
         continuar={true}
-        preco="1079,98"
+        preco="1300,00"
         parcelas="4"
-        parcela="269,99"
+        parcela="325,00"
       />
     </main>
   );

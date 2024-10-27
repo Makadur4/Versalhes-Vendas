@@ -30,7 +30,7 @@ export default function CardCarrinho(props) {
         </div>
       </div>
       <div className="valor_produto_carrinho">
-        <span>R$ {props.preco}</span>
+        <span>R$ {props.preco},00</span>
       </div>
     </div>
   );
