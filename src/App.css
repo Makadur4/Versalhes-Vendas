@@ -259,9 +259,29 @@ main{
     text-decoration: underline;
 }
 
+.esqueceu_senha span{
+    color: #000;
+}
+
 .label {
     display: block;
     margin-bottom: 5px;
+}
+
+.input4{
+    width: 200px;
+    height: 35px;
+    border-radius: 10px;
+    border-width: 1px;
+    margin-bottom: 40px;
+}
+
+.input3{
+    width: 200px;
+    height: 35px;
+    border-radius: 10px;
+    border-width: 1px;
+    margin-bottom: 20px;
 }
 
 .input2{
@@ -298,9 +318,10 @@ main{
     font-family: Arial, Helvetica, sans-serif;
     display: flex;
     align-items: center;
-    flex-direction: column;
     justify-content: center;
+    flex-direction: column;
 }
+
 
 .foto_perfil{
     padding: 20px;
@@ -309,7 +330,113 @@ main{
 
 .foto_perfil img{
     height:150px
-    
+}
+
+.cadastro{
+    font-family: Arial, Helvetica, sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.formulario{
+    display: flex;
+    gap: 90px
+}
+
+.generos{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.generos img{
+    height: 20px;
+    padding-left: 10px;
+}
+
+.generos input{
+    transform: scale(1.5);
+}
+
+.generos span {
+    margin-left: 10px;
+}
+
+.masculino input{
+    margin-left: 0px;
+}
+
+.recuperar_senha{
+    font-family: Arial, Helvetica, sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.texto_redefinir_senha{
+    padding: 30px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.redefinir_senha_svg
+{
+    height: 24px;
+}
+
+.cadiado{
+    height: 40px;
+}
+
+.redefinir_senha{
+    font-family: Arial, Helvetica, sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.conteudo_redefinir_senha{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.redefinir_senha label{
+  margin-left: 65px;
+}
+
+.redefinir_senha input{
+    margin-left: 65px;
+}
+
+.confirmacao_senha{
+    font-family: Arial, Helvetica, sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.botao_voltar button{
+    background-color: #0013C1;
+    color: #ffffff;
+    border: none;
+    border-radius: 10px;
+    height: 50px;
+    width: 200px;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
 }
 
 .botao_comprar{
@@ -627,6 +754,166 @@ nav {
     box-sizing: border-box;
 }
 
+.main_links {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+}
+
+.card_links{
+    width: 765px;
+    height: 335px;
+    background-color: var(--cor-menu);
+    border-radius: 24px;
+    padding: 35px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.card_link_contato{
+    width: 488px;
+    height: 438px;
+    background-color: var(--cor-menu);
+    border-radius: 24px;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 40px;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.card_link_contato .estado{
+    font-size: 32px;
+}
+
+.card_link_contato span{
+    font-size: 24px;
+    text-align: justify;
+
+}
+
+.card_link_contato_envio{
+    width: 488px;
+    height: 438px;
+    background-color: var(--cor-menu);
+    border-radius: 24px;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.card_link_contato_envio label{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.card_link_contato_envio label input{
+    height: 35px;
+    width: 387px;
+    border-radius: 8px;
+    box-sizing: border-box;
+}
+
+.card_link_contato_envio button{
+    height: 40px;
+    width: 114px;
+    border-radius: 8px;
+    background-color: #0013C1;
+    border: solid 1px #ffffff;
+    color: #ffffff;
+}
+
+.card_link_contato_envio textarea{
+    width: 387px;
+    max-height: 86px;
+    max-width: 387px;
+    border-radius: 8px;
+    box-sizing: border-box;
+    border: solid 2px #000;
+}
+
+.card_links_duvida{
+    height: 385px;
+}
+
+.titulo{
+    color: var(--cor-destaque)
+}
+
+.titulo h2{
+    margin: 0px;
+}
+
+.conteudo{
+    display: flex;
+    flex-direction: column;
+ }
+
+.conteudo ul{
+   list-style-type: none; 
+   padding: 0px;
+   display: flex;
+   flex-direction: column;
+   gap: 15px;
+   margin-top: 0px;
+}
+
+.conteudo ul li{
+    display: flex;
+    align-items: center;
+    gap: 5px
+ }
+
+ .conteudo ul li img{
+    height: 25px;
+ }
+
+.contato{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.botao_whats{
+    color:#ffffff;
+    background-color: var(--cor-destaque);
+    height: 30px;
+    border-radius: 5px;
+    border: solid;
+    border-width: 1px;
+    width: 100px; 
+    font-size: 15px;
+}
+
+.logo_links{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 40px;
+}
+
+.castelo{
+    height: 250px;
+}
+
+.versalhes{
+    height: 25px;
+}
+
+.duvida{
+    font-size: 14px;
+}
+
 .card:hover{
 
     background-color: #87c1f7;
@@ -708,6 +995,7 @@ nav {
     font-weight: bold;
     list-style-type: none;
     font-family: arial;
+    color: black;
 }
 
 #rodape {
