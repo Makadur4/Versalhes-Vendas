@@ -4,7 +4,7 @@ function Links() {
   return (
     <div id="links">
       <ul id="lista_links">
-        <Link to="sobre_nos"><li className="objeto_links">Sobre Nós</li></Link>
+        <Link to="sobrenos"><li className="objeto_links">Sobre Nós</li></Link>
         <li className="objeto_links">|</li>
         <Link to="ajuda"><li className="objeto_links">Ajuda</li></Link>
         <li className="objeto_links">|</li>

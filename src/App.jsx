@@ -14,12 +14,17 @@ import Cadastro from "./componentes/Cadastro";
 import RecuperarSenha from "./componentes/RecuperarSenha";
 import RedefinirSenha from "./componentes/RedefinirSenha";
 import ConfirmacaoDefinicao from "./componentes/ConfirmacaoDefinicao";
+import Frete from "./componentes/Frete";
+import Pagamento from "./componentes/Pagamento";
+import ConclusaoPagamento from "./componentes/ConclusaoPedido"
+import Pedido from "./componentes/Pedido";
+import EntregaPedido from "./componentes/EntregaPedido"
 
 function App() {
   return (
     <>
       <BrowserRouter>
-        <Cabecalho />
+        <Cabecalho />  
 
         <Menu />
 
@@ -33,13 +38,18 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/favoritos" element={<Main filtro="favoritos" />} />
           <Route path="/carrinho" element={<Carrinho />} />
-          <Route path="/sobre_nos" element={<SobreNos />} />
+          <Route path="/sobrenos" element={<SobreNos />} />
           <Route path="/ajuda" element={<Ajuda />} />
           <Route path="/contato" element={<Contato />} />
           <Route path="/cadastro" element={<Cadastro />} />
           <Route path="/recuperarsenha" element={<RecuperarSenha />} />
           <Route path="/redefinirsenha" element={<RedefinirSenha />} />
-          <Route path="/confirmacao_definicao" element={<ConfirmacaoDefinicao />} />
+          <Route path="/confirmacaodefinicao" element={<ConfirmacaoDefinicao />} />
+          <Route path="/frete" element={<Frete />} />
+          <Route path="/pagamento" element={<Pagamento />} />
+          <Route path="/conclusaopagamento" element={<ConclusaoPagamento />} />
+          <Route path="/pedido" element={<Pedido />} />
+          <Route path="/entregapedido" element={<EntregaPedido />} />
         </Routes>
         <Rodape />
       </BrowserRouter>

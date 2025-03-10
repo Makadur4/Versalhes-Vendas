@@ -5,7 +5,7 @@ export default function Carrinho() {
   return (
     <main className="detalhe">
       <div className="card_descricao">
-        <div className="ajuste_carrinho">
+        <div className="conteudo_card">
           <ListaCarrinho />
         </div>
       </div>

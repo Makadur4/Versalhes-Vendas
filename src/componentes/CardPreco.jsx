@@ -16,7 +16,11 @@ export default function CardPreco(props) {
   }
 
   if (props.continuar == true) {
-    botao2 = <button className="botao_comprar">Finalizar</button>;
+    botao2 = (
+      <Link to="/frete">
+        <button className="botao_comprar">Finalizar</button>
+      </Link>
+      );
     botao3 = (
       <Link to="/">
         <button className="botao_continuar_comprando">

@@ -18,7 +18,7 @@ export default function () {
                 <input type="text" className="input4" id="email"></input>
               </div>
               <div className="botao_continuar">
-                <Link to="/confirmacao_definicao"><button>Continuar</button></Link>
+                <Link to="/confirmacaodefinicao"><button>Continuar</button></Link>
               </div>
             </main>
     )
