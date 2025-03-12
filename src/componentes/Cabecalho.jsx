@@ -1,6 +1,26 @@
 import { Link } from "react-router-dom";
+import { useState } from "react";
+import ModalSemLogin from "./ModalSemLogin";
 
 export default function Cabecalho() {
+  
+  const [modal, setModal] = useState(0);
+
+  var componente;
+
+  switch (modal) {
+    case 1:
+        componente = <ModalSemLogin FuncaoAbrirModal={AbrirModal} FuncaoFechar={FecharModal} />;
+        break;
+}
+
+function AbrirModal() {
+  setModal(1);
+}
+function FecharModal(){
+  setModal(0);
+}
+
   return (
     <header>
       <div className="header">
@@ -19,9 +39,7 @@ export default function Cabecalho() {
           <img id="lupa" src="/svg/icone_lupa_preto.svg" />
         </div>
         <div id="icones">
-          <Link to="/login">
-            <img className="icone" src="/svg/icone_perfil_branco.svg" />
-          </Link>
+            <a onClick={AbrirModal}><img className="icone" src="/svg/icone_perfil_branco.svg" /></a>
           <Link to="/favoritos">
             <img className="icone" src="/svg/icone_coracao_branco.svg" />
           </Link>
@@ -30,6 +48,7 @@ export default function Cabecalho() {
           </Link>
         </div>
       </div>
+      {componente}
     </header>
   );
 }
