@@ -7,6 +7,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import DetalheProduto from "./componentes/DetalheProduto";
 import Login from "./componentes/Login";
 import Carrinho from "./componentes/Carrinho";
+import Frete from "./componentes/Frete";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/favoritos" element={<Main filtro="favoritos" />} />
           <Route path="/carrinho" element={<Carrinho />} />
+          <Route path="/frete" element={<Frete />} />
         </Routes>
         <Rodape />
       </BrowserRouter>
