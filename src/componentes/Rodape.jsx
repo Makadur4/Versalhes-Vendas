@@ -1,12 +1,14 @@
+import { Link } from "react-router-dom";
+
 function Links() {
   return (
     <div id="links">
       <ul id="lista_links">
-        <li className="objeto_links">Sobre Nós</li>
+        <Link to="sobrenos"><li className="objeto_links">Sobre Nós</li></Link>
         <li className="objeto_links">|</li>
-        <li className="objeto_links">Ajuda</li>
+        <Link to="ajuda"><li className="objeto_links">Ajuda</li></Link>
         <li className="objeto_links">|</li>
-        <li className="objeto_links">Contato</li>
+        <Link to="contato"><li className="objeto_links">Contato</li></Link>
       </ul>
     </div>
   );

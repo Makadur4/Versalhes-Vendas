@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export default function () {
   return (
     <main className="login">
@@ -16,14 +18,14 @@ export default function () {
         <input type="text" className="input2" id="senha"></input>
       </div>
       <div className="esqueceu_senha">
-        <span>Esqueceu a senha?</span>
+        <Link to="/recuperarsenha"><span>Esqueceu a senha?</span></Link>
       </div>
       <div className="botao_continuar">
         <button>Continuar</button>
       </div>
       <div className="texto_cadastrar">
         <span>Não se cadastrou ainda?</span>
-        <a href="">cadastre-se</a>
+        <Link to="/cadastro">cadastre-se</Link>
       </div>
     </main>
   );
