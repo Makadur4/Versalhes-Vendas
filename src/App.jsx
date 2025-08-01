@@ -29,14 +29,14 @@ function App() {
         <Menu />
 
         <Routes>
-          <Route path="/" element={<Main filtro="" />} />
-          <Route path="/masculino" element={<Main filtro="masculino" />} />
-          <Route path="/feminino" element={<Main filtro="feminino" />} />
-          <Route path="/especiais" element={<Main filtro="especiais" />} />
-          <Route path="/ofertas" element={<Main filtro="ofertas" />} />
+          <Route path="/" element={<Main secao="" />} />
+          <Route path="/masculino" element={<Main secao="masculino" />} />
+          <Route path="/feminino" element={<Main secao="feminino" />} />
+          <Route path="/especiais" element={<Main secao="especiais" />} />
+          <Route path="/ofertas" element={<Main secao="ofertas" />} />
           <Route path="/detalhe/:idPerfume" element={<DetalheProduto />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/favoritos" element={<Main filtro="favoritos" />} />
+          <Route path="/favoritos" element={<Main secao="favoritos" />} />
           <Route path="/carrinho" element={<Carrinho />} />
           <Route path="/sobrenos" element={<SobreNos />} />
           <Route path="/ajuda" element={<Ajuda />} />

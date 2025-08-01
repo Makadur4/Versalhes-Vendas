@@ -9,7 +9,7 @@ export default function Main(props) {
   let filtro;
   let lista;
 
-  if (props.filtro == "") {
+  if (props.secao == "") {
     banner = <Banner />;
     lista = <ListaProdutos />;
   } else {
@@ -19,7 +19,7 @@ export default function Main(props) {
       </h1>
     );
 
-    if (props.filtro == "favoritos") {
+    if (props.secao == "favoritos") {
       lista = <ListaFavoritos />;
     } else {
       filtro = <Filtro />;
