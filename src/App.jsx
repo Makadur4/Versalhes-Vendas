@@ -16,7 +16,7 @@ import RedefinirSenha from "./componentes/RedefinirSenha";
 import ConfirmacaoDefinicao from "./componentes/ConfirmacaoDefinicao";
 import Frete from "./componentes/Frete";
 import Pagamento from "./componentes/Pagamento";
-import ConclusaoPagamento from "./componentes/ConclusaoPedido";
+import ConclusaoPedido from "./componentes/ConclusaoPedido";
 import Pedido from "./componentes/Pedido";
 import EntregaPedido from "./componentes/EntregaPedido";
 
@@ -25,34 +25,34 @@ function App() {
     <>
       <BrowserRouter>
         <Cabecalho />
-
         <Menu />
 
         <Routes>
           <Route path="/" element={<Main secao="" />} />
+
           <Route path="/masculino" element={<Main secao="masculino" />} />
           <Route path="/feminino" element={<Main secao="feminino" />} />
           <Route path="/especiais" element={<Main secao="especiais" />} />
           <Route path="/ofertas" element={<Main secao="ofertas" />} />
           <Route path="/detalhe/:idPerfume" element={<DetalheProduto />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/favoritos" element={<Main secao="favoritos" />} />
           <Route path="/carrinho" element={<Carrinho />} />
-          <Route path="/sobrenos" element={<SobreNos />} />
-          <Route path="/ajuda" element={<Ajuda />} />
-          <Route path="/contato" element={<Contato />} />
+          <Route path="/frete" element={<Frete />} />
+          <Route path="/pagamento" element={<Pagamento />} />
+          <Route path="/conclusaopedido" element={<ConclusaoPedido />} />
+          <Route path="/pedido" element={<Pedido />} />
+          <Route path="/login" element={<Login />} />
           <Route path="/cadastro" element={<Cadastro />} />
           <Route path="/recuperarsenha" element={<RecuperarSenha />} />
           <Route path="/redefinirsenha" element={<RedefinirSenha />} />
+          <Route path="/favoritos" element={<Main secao="favoritos" />} />
           <Route
             path="/confirmacaodefinicao"
             element={<ConfirmacaoDefinicao />}
           />
-          <Route path="/frete" element={<Frete />} />
-          <Route path="/pagamento" element={<Pagamento />} />
-          <Route path="/conclusaopagamento" element={<ConclusaoPagamento />} />
-          <Route path="/pedido" element={<Pedido />} />
           <Route path="/entregapedido" element={<EntregaPedido />} />
+          <Route path="/sobrenos" element={<SobreNos />} />
+          <Route path="/ajuda" element={<Ajuda />} />
+          <Route path="/contato" element={<Contato />} />
         </Routes>
         <Rodape />
       </BrowserRouter>
