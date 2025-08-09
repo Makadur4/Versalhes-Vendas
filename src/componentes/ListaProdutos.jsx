@@ -1,39 +1,51 @@
 import { useEffect, useState } from "react";
-import CardProduto from "./CardProduto";
-import axios from "axios";
 
-export default function ListaProdutos() {
+import CardProduto from "./CardProduto";
+
+import { obterPerfumesTodos, obterPerfumesPorSecao } from "../api/perfume";
+
+export default function ListaProdutos(props) {
   const [lista, setLista] = useState([]);
 
-  function CarrergarListaProdutos() {
-    axios
-      .get(`http://localhost:8080/perfume`)
-      .then(function (response) {
-        setLista(response.data);
-      })
-      .catch(function (erro) {
-        alert("Não foi possível executar operação!");
-        console.log(erro);
-      });
+  async function atualizarLista() {
+    let resultado;
+
+    if (props.secao == "") {
+      resultado = await obterPerfumesTodos(props.pesquisa ?? "");
+    } else {
+      resultado = await obterPerfumesPorSecao(props.secao, props.filtros);
+    }
+
+    if (resultado.mensagem != "") {
+      alert(resultado.mensagem);
+
+      return;
+    }
+
+    setLista(resultado.lista);
   }
 
-  useEffect(CarrergarListaProdutos, []);
+  useEffect(() => {
+    atualizarLista();
+  }, [props.secao, props.pesquisa, props.filtros]);
 
-  const listaComponentes = lista.map(function (item) {
+  console.log(props.quantidadeParcelas);
+
+  const componente = lista.map(function (item) {
     return (
       <CardProduto
-        key={item.idPerfume}
-        IdPerfume={item.idPerfume}
-        Nome={item.nome}
-        PrecoNormal={item.precoNormal}
-        Parcelas={4}
+        key={item.id}
+        idPerfume={item.id}
+        nome={item.nome}
+        preco={item.precoVenda}
+        parcelas={props.quantidadeParcelas}
       />
     );
   });
 
   return (
     <div id="principal">
-      <div id="produtos">{listaComponentes}</div>
+      <div id="produtos">{componente}</div>
     </div>
   );
 }

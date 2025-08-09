@@ -1,7 +1,12 @@
-export default function () {
+export default function (props) {
   return (
-    <div className="Favoritar">
-      <img src="/svg/icone_coracao_preto.svg"></img>Favoritar
-    </div>
+    <a className="Favoritar" onClick={props.mudarStatusFavorito}>
+      <img
+        src={`/svg/icone_coracao_preto${
+          props.favorito ? "_preenchido" : ""
+        }.svg`}
+      ></img>{" "}
+      {props.favorito ? "Remover" : "Favoritar"}
+    </a>
   );
 }

@@ -1,9 +1,13 @@
+import { useState, useEffect } from "react";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+
+import { obterCondicoesPagamentoTodas } from "./api/condicao_pagamento";
+
 import "./App.css";
 import Cabecalho from "./componentes/Cabecalho";
 import Menu from "./componentes/Menu";
 import Main from "./componentes/Main";
 import Rodape from "./componentes/Rodape";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
 import DetalheProduto from "./componentes/DetalheProduto";
 import Login from "./componentes/Login";
 import Carrinho from "./componentes/Carrinho";
@@ -21,20 +25,105 @@ import Pedido from "./componentes/Pedido";
 import EntregaPedido from "./componentes/EntregaPedido";
 
 function App() {
+  const [pesquisa, setPesquisa] = useState("");
+  const [condicoesPagamento, setCondicoesPagamento] = useState([]);
+  const [quantidadeParcelas, setQuantidadeParcelas] = useState(0);
+
+  async function carregarCondicoesPagamento() {
+    const resultado = await obterCondicoesPagamentoTodas();
+
+    if (resultado.mensagem != "") {
+      alert(resultado.mensagem);
+
+      return;
+    }
+
+    setCondicoesPagamento(resultado.lista);
+
+    const maiorQuantidadeParcelas = resultado.lista.reduce((maior, item) => {
+      return item.quantidadeParcelas > maior.quantidadeParcelas ? item : maior;
+    }).quantidadeParcelas;
+
+    setQuantidadeParcelas(maiorQuantidadeParcelas);
+  }
+
+  useEffect(() => {
+    carregarCondicoesPagamento();
+  }, []);
+
   return (
     <>
       <BrowserRouter>
-        <Cabecalho />
+        <Cabecalho pesquisa={pesquisa} setPesquisa={setPesquisa} />
         <Menu />
 
         <Routes>
-          <Route path="/" element={<Main secao="" />} />
+          <Route
+            path="/"
+            element={
+              <Main
+                secao=""
+                setPesquisa={setPesquisa}
+                quantidadeParcelas={quantidadeParcelas}
+              />
+            }
+          />
+          <Route
+            path="/masculino"
+            element={
+              <Main
+                secao="masculino"
+                setPesquisa={setPesquisa}
+                quantidadeParcelas={quantidadeParcelas}
+              />
+            }
+          />
+          <Route
+            path="/feminino"
+            element={
+              <Main
+                secao="feminino"
+                setPesquisa={setPesquisa}
+                quantidadeParcelas={quantidadeParcelas}
+              />
+            }
+          />
+          <Route
+            path="/especiais"
+            element={
+              <Main
+                secao="especiais"
+                setPesquisa={setPesquisa}
+                quantidadeParcelas={quantidadeParcelas}
+              />
+            }
+          />
+          <Route
+            path="/ofertas"
+            element={
+              <Main
+                secao="ofertas"
+                setPesquisa={setPesquisa}
+                quantidadeParcelas={quantidadeParcelas}
+              />
+            }
+          />
+          <Route
+            path="/pesquisa"
+            element={
+              <Main
+                secao=""
+                pesquisa={pesquisa}
+                setPesquisa={setPesquisa}
+                quantidadeParcelas={quantidadeParcelas}
+              />
+            }
+          />
+          <Route
+            path="/detalhe/:idPerfume"
+            element={<DetalheProduto quantidadeParcelas={quantidadeParcelas} />}
+          />
 
-          <Route path="/masculino" element={<Main secao="masculino" />} />
-          <Route path="/feminino" element={<Main secao="feminino" />} />
-          <Route path="/especiais" element={<Main secao="especiais" />} />
-          <Route path="/ofertas" element={<Main secao="ofertas" />} />
-          <Route path="/detalhe/:idPerfume" element={<DetalheProduto />} />
           <Route path="/carrinho" element={<Carrinho />} />
           <Route path="/frete" element={<Frete />} />
           <Route path="/pagamento" element={<Pagamento />} />

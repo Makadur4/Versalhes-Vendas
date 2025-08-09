@@ -1,25 +1,25 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+
 import { useState } from "react";
+
 import ModalSemLogin from "./ModalSemLogin";
 
-export default function Cabecalho() {
-  
+export default function Cabecalho(props) {
   const [modal, setModal] = useState(0);
 
-  var componente;
+  const navigate = useNavigate();
 
-  switch (modal) {
-    case 1:
-        componente = <ModalSemLogin FuncaoAbrirModal={AbrirModal} FuncaoFechar={FecharModal} />;
-        break;
-}
+  const componente =
+    modal == 1 ? (
+      <ModalSemLogin abrirModal={abrirModal} fecharModal={fecharModal} />
+    ) : null;
 
-function AbrirModal() {
-  setModal(1);
-}
-function FecharModal(){
-  setModal(0);
-}
+  function abrirModal() {
+    setModal(1);
+  }
+  function fecharModal() {
+    setModal(0);
+  }
 
   return (
     <header>
@@ -35,11 +35,22 @@ function FecharModal(){
             id="barra_de_pesquisa"
             type="text"
             placeholder="Pesquisar..."
+            value={props.pesquisa}
+            onChange={(e) => {
+              props.setPesquisa(e.target.value);
+            }}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                navigate(`/pesquisa?p=${encodeURIComponent(props.pesquisa)}`);
+              }
+            }}
           />
           <img id="lupa" src="/svg/icone_lupa_preto.svg" />
         </div>
         <div id="icones">
-            <a onClick={AbrirModal}><img className="icone" src="/svg/icone_perfil_branco.svg" /></a>
+          <a onClick={abrirModal}>
+            <img className="icone" src="/svg/icone_perfil_branco.svg" />
+          </a>
           <Link to="/favoritos">
             <img className="icone" src="/svg/icone_coracao_branco.svg" />
           </Link>

@@ -1,34 +1,77 @@
-import axios from "axios";
+import { useEffect, useState } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+
+import { obterPerfumesPeloId } from "../api/perfume";
+import { consultarPerfumeFavoritos } from "../api/favorito";
+import {
+  adicionarPerfumeFavoritos,
+  removerPerfumeFavoritos,
+} from "../api/favorito";
+
 import CardPreco from "./CardPreco";
 import Estrelas from "./Estrelas";
 import IconeFavorito from "./IconeFavorito";
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
 
-export default function DetalheProduto() {
+export default function DetalheProduto(props) {
   const { idPerfume } = useParams();
-  const [dados, setDados] = useState();
+  const [detalhes, setDetalhes] = useState(null);
+  const [favorito, setFavorito] = useState(false);
 
-  function CarregarDadosProduto() {
-    axios
-      .get(`http://localhost:8080/perfume/${idPerfume}`)
-      .then(function (response) {
-        let perfume = response.data;
+  const navegate = useNavigate();
 
-        let valor = perfume.precoNormal;
-        let valorNumerico = parseFloat(valor);
-        let resultado = (valorNumerico / 4).toFixed(2);
+  async function mudarStatusFavorito() {
+    const funcao = favorito
+      ? removerPerfumeFavoritos
+      : adicionarPerfumeFavoritos;
 
-        perfume.precoParcela = resultado;
-        setDados(perfume);
-      })
-      .catch(function (erro) {
-        alert("Não foi possível executar operação!");
-        console.log(erro);
-      });
+    const resultado = await funcao(idPerfume);
+
+    if (resultado.mensagem != "") {
+      alert(resultado.mensagem);
+
+      return;
+    }
+
+    await atualizarFavorito();
   }
 
-  useEffect(CarregarDadosProduto, []);
+  async function atualizarDetalhes() {
+    const resultado = await obterPerfumesPeloId(idPerfume);
+
+    if (resultado.mensagem != "") {
+      alert(resultado.mensagem);
+
+      navegate("/");
+
+      return;
+    }
+
+    if (atualizarFavorito() == false) {
+      navegate("/");
+
+      return;
+    }
+
+    setDetalhes(resultado.item);
+  }
+
+  async function atualizarFavorito() {
+    const resultado = await consultarPerfumeFavoritos(idPerfume);
+
+    if (resultado.mensagem != "") {
+      alert(resultado.mensagem);
+
+      return false;
+    }
+
+    setFavorito(resultado.valor);
+
+    return true;
+  }
+
+  useEffect(() => {
+    atualizarDetalhes();
+  }, []);
 
   return (
     <main className="detalhe">
@@ -43,20 +86,24 @@ export default function DetalheProduto() {
         </div>
         <div className="descricao">
           <div className="nome_produto">
-            <p>{dados && dados.nome}</p>
+            <p>{detalhes && detalhes.nome}</p>
           </div>
           <div className="icones_produto">
-            <Estrelas nivel={dados && dados.mediaAvaliacao} />
-            <IconeFavorito />
+            <Estrelas nivel={detalhes && detalhes.mediaAvaliacao} />
+            <IconeFavorito
+              favorito={favorito}
+              mudarStatusFavorito={mudarStatusFavorito}
+            />
           </div>
-          <div className="descricao_produto">{dados && dados.descricao}</div>
+          <div className="descricao_produto">
+            {detalhes && detalhes.descricao}
+          </div>
         </div>
       </div>
       <CardPreco
         continuar={false}
-        preco={dados && dados.precoNormal}
-        parcelas="4"
-        parcela={dados && dados.precoParcela}
+        preco={detalhes && detalhes.precoVenda}
+        parcelas={props.quantidadeParcelas}
       />
     </main>
   );
