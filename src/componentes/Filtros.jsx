@@ -5,7 +5,7 @@ import { obterMarcaTodas } from "../api/marca";
 import { obterTiposTodos } from "../api/tipo";
 
 export default function (props) {
-  const navegate = useNavigate();
+  const navigate = useNavigate();
 
   const [preco, setPreco] = useState("0");
   const [marcas, setMarcas] = useState([]);
@@ -34,7 +34,7 @@ export default function (props) {
     if (resultadoMarcas.mensagem != "") {
       alert(resultadoMarcas.mensagem);
 
-      navegate("/");
+      navigate("/");
     }
 
     const resultadoTipos = await obterTiposTodos();
@@ -42,7 +42,7 @@ export default function (props) {
     if (resultadoTipos.mensagem != "") {
       alert(resultadoTipos.mensagem);
 
-      navegate("/");
+      navigate("/");
     }
 
     setMarcas(resultadoMarcas.lista);

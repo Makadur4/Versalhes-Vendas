@@ -1,19 +1,38 @@
 export default function CardCarrinho(props) {
+  const precoTotal = props.precoVenda * props.quantidade;
+
+  const componente =
+    precoTotal == props.precoVenda ? null : (
+      <>
+        {" "}
+        <br />
+        <div>
+          R${" "}
+          {precoTotal.toLocaleString("pt-BR", {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2,
+          })}
+        </div>
+      </>
+    );
+
   return (
-    <div className="moldura_produto">
+    <div key={props.id} className="moldura_produto">
       <div className="moldura_carrinho">
         <h1>
-          <img
-            className="foto_dior_carrinho"
-            src={`/img/perfume${props.id}.png`}
-          />
+          <img className="foto_dior_carrinho" src={`http://localhost:8080/imagem/${props.id}`} />
         </h1>
       </div>
       <div className="descricao_carrinho">
         <div className="nome_produto">
           <p>{props.nome}</p>
           <div className="opcao_produto">
-            <select value={props.quantidade}>
+            <select
+              value={props.quantidade}
+              onChange={(e) => {
+                props.mudarQuantidadeItem(props.id, e.target.value);
+              }}
+            >
               <option>1</option>
               <option>2</option>
               <option>3</option>
@@ -25,12 +44,25 @@ export default function CardCarrinho(props) {
               <option>9</option>
               <option>10</option>
             </select>
-            <button>Remover</button>
+            <button
+              onClick={() => {
+                props.removerItem(props.id);
+              }}
+            >
+              Remover
+            </button>
           </div>
         </div>
       </div>
       <div className="valor_produto_carrinho">
-        <span>R$ {props.preco},00</span>
+        <div>
+          R${" "}
+          {props.precoVenda.toLocaleString("pt-BR", {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2,
+          })}
+        </div>
+        {componente}
       </div>
     </div>
   );

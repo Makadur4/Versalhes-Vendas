@@ -14,8 +14,7 @@ export async function obterPerfumesTodos(pesquisa) {
   } catch (erro) {
     return {
       lista: null,
-      mensagem:
-        "Não foi possível executar operação. Por favor, tente novamente mais tarde!",
+      mensagem: "Não foi possível executar operação. Por favor, tente novamente mais tarde!",
     };
   }
 }
@@ -92,13 +91,12 @@ export async function obterPerfumesPorSecao(secao, filtros) {
   } catch (erro) {
     return {
       lista: null,
-      mensagem:
-        "Não foi possível executar operação. Por favor, tente novamente mais tarde!",
+      mensagem: "Não foi possível executar operação. Por favor, tente novamente mais tarde!",
     };
   }
 }
 
-export async function obterPerfumesPeloId(id) {
+export async function obterPerfumePeloId(id) {
   try {
     const resultado = perfumes.find((item) => {
       return item.id == id;
@@ -108,8 +106,7 @@ export async function obterPerfumesPeloId(id) {
   } catch (erro) {
     return {
       item: null,
-      mensagem:
-        "Não foi possível executar operação. Por favor, tente novamente mais tarde!",
+      mensagem: "Não foi possível executar operação. Por favor, tente novamente mais tarde!",
     };
   }
 }

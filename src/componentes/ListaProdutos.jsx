@@ -29,18 +29,8 @@ export default function ListaProdutos(props) {
     atualizarLista();
   }, [props.secao, props.pesquisa, props.filtros]);
 
-  console.log(props.quantidadeParcelas);
-
   const componente = lista.map(function (item) {
-    return (
-      <CardProduto
-        key={item.id}
-        idPerfume={item.id}
-        nome={item.nome}
-        preco={item.precoVenda}
-        parcelas={props.quantidadeParcelas}
-      />
-    );
+    return <CardProduto key={item.id} idPerfume={item.id} nome={item.nome} preco={item.precoVenda} parcelas={props.quantidadeParcelas} />;
   });
 
   return (

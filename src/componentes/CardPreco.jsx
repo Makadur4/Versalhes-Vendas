@@ -32,29 +32,29 @@ export default function CardPreco(props) {
 
   let botao1;
   let botao2;
-  let botao3;
 
   if (props.continuar == false) {
     botao1 = (
-      <Link to="/carrinho">
-        <button className="botao_comprar">
-          <img src="/svg/icone_carrinho_branco.svg"></img>Comprar
-        </button>
-      </Link>
+      <button
+        className="botao_comprar"
+        onClick={() => {
+          props.adicionarProdutoCarrinho();
+        }}
+      >
+        <img src="/svg/icone_carrinho_branco.svg"></img>Comprar
+      </button>
     );
   }
 
   if (props.continuar == true) {
-    botao2 = (
+    botao1 = (
       <Link to="/frete">
         <button className="botao_comprar">Finalizar</button>
       </Link>
     );
-    botao3 = (
+    botao2 = (
       <Link to="/">
-        <button className="botao_continuar_comprando">
-          Continuar Comprando
-        </button>
+        <button className="botao_continuar_comprando">Continuar Comprando</button>
       </Link>
     );
   }
@@ -73,9 +73,7 @@ export default function CardPreco(props) {
           </span>
           <span className="a_vista">Á vista</span>
         </div>
-        <div style={{ marginBottom: "35px" }}>
-          ou em até {props.parcelas}x (consulte condições)
-        </div>
+        <div style={{ marginBottom: "35px" }}>ou em até {props.parcelas}x (consulte condições)</div>
       </div>
       <div className="calcular">
         <span>Calcular o frete</span>
@@ -96,7 +94,6 @@ export default function CardPreco(props) {
       </div>
       {botao1}
       {botao2}
-      {botao3}
     </div>
   );
 }

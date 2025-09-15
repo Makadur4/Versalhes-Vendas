@@ -1,20 +1,91 @@
-import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
-export default function () {
+import { obterEnderecoEntrega } from "../api/cliente";
+
+export default function (props) {
+  const [endereco, setEndereco] = useState();
+
+  const navigate = useNavigate();
+
+  async function consultarEnderecoEntrega() {
+    const resultado = await obterEnderecoEntrega(props.token);
+
+    if (resultado.mensagem != "") {
+      alert(resultado.mensagem);
+
+      return;
+    }
+
+    setEndereco(resultado.endereco);
+  }
+
+  useEffect(() => {
+    if (!props.token || props.token == "") {
+      navigate("/login?o=frete");
+
+      return;
+    }
+
+    if (props.carrinho.length == 0) {
+      alert("Seu carrinho está vazio!");
+
+      navigate("/");
+
+      return;
+    }
+
+    consultarEnderecoEntrega();
+  }, []);
+
+  let componente;
+
+  if (endereco != null && endereco.cep != "") {
+    componente = (
+      <>
+        <div className="endereço">
+          <span>
+            {endereco && endereco.endereco}, {endereco && endereco.numero}
+            {endereco && endereco.complemento != "" && ` - ${endereco.complemento}`}
+          </span>
+          <span>
+            {endereco && endereco.bairro} | {endereco && endereco.municipio} – {endereco && endereco.uf}
+          </span>
+          <span>{endereco && endereco.cep}</span>
+          <span>{endereco && endereco.responsavel}</span>
+        </div>
+        <div className="botao_alterar">
+          <button
+            type="button"
+            className="botao_branco"
+            onClick={(e) => {
+              navigate("/endereco");
+            }}
+          >
+            Alterar
+          </button>
+        </div>
+      </>
+    );
+  } else {
+    componente = (
+      <div className="botao_alterar">
+        <button
+          className="botao_branco"
+          onClick={(e) => {
+            navigate("/endereco");
+          }}
+        >
+          Informe o Endereço
+        </button>
+      </div>
+    );
+  }
+
   return (
     <main className="detalhe">
       <div className="card_frete">
-        <div className="moldura_frete">
-          <div className="endereço">
-            <span>RUA WENER GOLDBER, 77 - 151 C</span>
-            <span>Jardim Tupanci | Barueri – SP</span>
-            <span>06414-025​</span>
-            <span>José Ribeiro</span>
-          </div>
-          <div className="botao_alterar">
-            <button className="botao_branco">Alterar</button>
-          </div>
-        </div>
+        <div className="moldura_frete">{componente}</div>
         <div className="moldura_forma_entrega">
           <span>Escolha uma forma de receber o produto</span>
           <div className="formas_entrega">

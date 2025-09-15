@@ -13,6 +13,10 @@ export default function Main(props) {
 
   const [filtros, setFiltros] = useState({});
 
+  useEffect(() => {
+    props.setPesquisa("");
+  }, [props.secao, pesquisa]);
+
   let banner;
   let titulo;
   let filtro;
@@ -27,13 +31,7 @@ export default function Main(props) {
       titulo = <h1>{`Resultados para '${pesquisa}'`}</h1>;
     }
 
-    lista = (
-      <ListaProdutos
-        secao=""
-        pesquisa={pesquisa}
-        quantidadeParcelas={props.quantidadeParcelas}
-      />
-    );
+    lista = <ListaProdutos secao="" pesquisa={pesquisa} quantidadeParcelas={props.quantidadeParcelas} />;
   } else {
     titulo = (
       <h1>
@@ -45,19 +43,9 @@ export default function Main(props) {
       lista = <ListaFavoritos />;
     } else {
       filtro = <Filtros setFiltros={setFiltros} />;
-      lista = (
-        <ListaProdutos
-          secao={props.secao}
-          filtros={filtros}
-          quantidadeParcelas={props.quantidadeParcelas}
-        />
-      );
+      lista = <ListaProdutos secao={props.secao} filtros={filtros} quantidadeParcelas={props.quantidadeParcelas} />;
     }
   }
-
-  useEffect(() => {
-    props.setPesquisa("");
-  }, [props.secao, pesquisa]);
 
   return (
     <main>

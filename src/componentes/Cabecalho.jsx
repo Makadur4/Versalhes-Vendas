@@ -9,10 +9,7 @@ export default function Cabecalho(props) {
 
   const navigate = useNavigate();
 
-  const componente =
-    modal == 1 ? (
-      <ModalSemLogin abrirModal={abrirModal} fecharModal={fecharModal} />
-    ) : null;
+  const componente = modal == 1 ? <ModalSemLogin abrirModal={abrirModal} fecharModal={fecharModal} /> : null;
 
   function abrirModal() {
     setModal(1);
