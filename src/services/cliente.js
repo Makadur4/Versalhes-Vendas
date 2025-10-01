@@ -1,4 +1,4 @@
-export async function efetuarCadastro(email, senha, dataNascimento, cpf, telefone, sexo) {
+export async function efetuarCadastro(cpf, nome, dataNascimento, sexo, telefone, email, senha) {
   try {
     return { mensagem: "" };
   } catch (erro) {

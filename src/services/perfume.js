@@ -1,6 +1,6 @@
 import perfumes from "../dados/perfumes";
 
-export async function obterPerfumesTodos(pesquisa) {
+export async function obterPerfumes(pesquisa) {
   try {
     if (pesquisa != "") {
       const resultado = perfumes.filter((item) => {

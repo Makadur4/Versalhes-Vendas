@@ -1,38 +1,39 @@
 import { useState, useEffect } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
-import { obterCondicoesPagamentoTodas } from "./api/condicao_pagamento";
+//import { obterCondicoesPagamentoTodas } from "./api/condicao_pagamento";
+
+import Cabecalho from "./components/Cabecalho";
+import Menu from "./components/menu";
+
+//import Main from "./componentes/Main";
+//import DetalheProduto from "./componentes/DetalheProduto";
+//import Carrinho from "./componentes/Carrinho";
+//import Frete from "./componentes/Frete";
+//import Endereco from "./componentes/Endereco";
+//import Pagamento from "./componentes/Pagamento";
+//import ConclusaoPedido from "./componentes/ConclusaoPedido";
+//import Pedido from "./componentes/Pedido";
+
+//import Login from "./componentes/Login";
+//import Cadastro from "./componentes/Cadastro";
+//import RecuperarSenha from "./componentes/RecuperarSenha";
+//import RedefinirSenha from "./componentes/RedefinirSenha";
+//import ConfirmacaoDefinicao from "./componentes/ConfirmacaoDefinicao";
+
+//import SobreNos from "./componentes/SobreNos";
+//import Ajuda from "./componentes/Ajuda";
+//import Contato from "./componentes/Contato";
+
+//import EntregaPedido from "./componentes/EntregaPedido";
+
+import Rodape from "./components/Rodape";
 
 import "./App.css";
 
-import Cabecalho from "./componentes/Cabecalho";
-import Menu from "./componentes/Menu";
-import Main from "./componentes/Main";
-import DetalheProduto from "./componentes/DetalheProduto";
-import Carrinho from "./componentes/Carrinho";
-import Frete from "./componentes/Frete";
-import Endereco from "./componentes/Endereco";
-import Pagamento from "./componentes/Pagamento";
-import ConclusaoPedido from "./componentes/ConclusaoPedido";
-import Pedido from "./componentes/Pedido";
-
-import Login from "./componentes/Login";
-import Cadastro from "./componentes/Cadastro";
-import RecuperarSenha from "./componentes/RecuperarSenha";
-import RedefinirSenha from "./componentes/RedefinirSenha";
-import ConfirmacaoDefinicao from "./componentes/ConfirmacaoDefinicao";
-
-import SobreNos from "./componentes/SobreNos";
-import Ajuda from "./componentes/Ajuda";
-import Contato from "./componentes/Contato";
-
-import EntregaPedido from "./componentes/EntregaPedido";
-
-import Rodape from "./componentes/Rodape";
-
 function App() {
   const [pesquisa, setPesquisa] = useState("");
-  const [condicoesPagamento, setCondicoesPagamento] = useState([]);
+  /* const [condicoesPagamento, setCondicoesPagamento] = useState([]);
   const [quantidadeParcelas, setQuantidadeParcelas] = useState(0);
   const [carrinho, setCarrinho] = useState(JSON.parse(sessionStorage.getItem("carrinho") ?? "[]"));
   const [token, setToken] = useState(sessionStorage.getItem("jwtToken") ?? "");
@@ -67,7 +68,7 @@ function App() {
 
   useEffect(() => {
     carregarCondicoesPagamento();
-  }, []);
+  }, []);*/
 
   return (
     <>
@@ -75,7 +76,7 @@ function App() {
         <Cabecalho pesquisa={pesquisa} setPesquisa={setPesquisa} />
         <Menu />
         <Routes>
-          <Route path="/" element={<Main secao="" setPesquisa={setPesquisa} quantidadeParcelas={quantidadeParcelas} />} />
+          {/*<Route path="/" element={<Main secao="" setPesquisa={setPesquisa} quantidadeParcelas={quantidadeParcelas} />} />
           <Route path="/masculino" element={<Main secao="masculino" setPesquisa={setPesquisa} quantidadeParcelas={quantidadeParcelas} />} />
           <Route path="/feminino" element={<Main secao="feminino" setPesquisa={setPesquisa} quantidadeParcelas={quantidadeParcelas} />} />
           <Route path="/especiais" element={<Main secao="especiais" setPesquisa={setPesquisa} quantidadeParcelas={quantidadeParcelas} />} />
@@ -99,7 +100,7 @@ function App() {
           <Route path="/ajuda" element={<Ajuda />} />
           <Route path="/contato" element={<Contato />} />
 
-          <Route path="/entregapedido" element={<EntregaPedido />} />
+          <Route path="/entregapedido" element={<EntregaPedido />} />*/}
         </Routes>
         <Rodape />
       </BrowserRouter>

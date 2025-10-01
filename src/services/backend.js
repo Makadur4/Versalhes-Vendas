@@ -1,7 +1,9 @@
 import axios from "axios";
 
+import config from "../config";
+
 const backend = axios.create({
-  baseURL: "http://localhost:8080",
+  baseURL: config.urlApi,
   timeout: 120000,
   headers: { "Content-Type": "application/json" },
 });
