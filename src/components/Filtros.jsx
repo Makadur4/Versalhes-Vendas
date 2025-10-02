@@ -50,8 +50,8 @@ export default function (props) {
   function aplicarFiltros() {
     props.setFiltros({
       preco: parseInt(preco),
-      marcas: marcasSelecionadas,
-      tipos: tiposSelecionados,
+      marcas: Object.keys(marcasSelecionadas).filter((key) => marcasSelecionadas[key]),
+      tipos: Object.keys(tiposSelecionados).filter((key) => tiposSelecionados[key]),
     });
   }
 
@@ -62,8 +62,8 @@ export default function (props) {
 
     props.setFiltros({
       preco: 0,
-      marcas: {},
-      tipos: {},
+      marcas: [],
+      tipos: [],
     });
   }
 
