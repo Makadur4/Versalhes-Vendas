@@ -40,6 +40,56 @@ function MenuSemLogin(props) {
   );
 }
 
+function MenuComLogin(props) {
+  const navigate = useNavigate();
+
+  function abrirCadastro() {
+    props.fecharModal();
+
+    navigate("/cadastro");
+  }
+
+  function abrirPedidos() {
+    props.fecharModal();
+
+    navigate("/pedidos");
+  }
+
+  function fazerLogout() {
+    props.fecharModal();
+    props.guardarToken("");
+    navigate("/");
+  }
+
+  return (
+    <div className="overlay" onClick={props.fecharModal}>
+      <div className="overlay_modal">
+        <div className="modal" onClick={(e) => e.stopPropagation()}>
+          <div className="botoes_modal">
+            <ul>
+              <li>
+                <button className="botao_modal" onClick={abrirCadastro}>
+                  Cadastro
+                </button>
+              </li>
+              <li>
+                <button className="botao_modal" onClick={abrirPedidos}>
+                  Pedidos
+                </button>
+              </li>
+              <li>
+                <button className="botao_modal" onClick={fazerLogout}>
+                  Sair
+                </button>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function (props) {
   const [modal, setModal] = useState(0);
 
@@ -53,11 +103,11 @@ export default function (props) {
     if ((props.token ?? "") == "") {
       setModal(1);
     } else {
-      navigate("/cadastro");
+      setModal(2);
     }
   }
 
-  const componente = modal == 1 ? <MenuSemLogin fecharModal={fecharModal} /> : null;
+  const componente = modal == 1 ? <MenuSemLogin fecharModal={fecharModal} /> : modal == 2 ? <MenuComLogin guardarToken={props.guardarToken} fecharModal={fecharModal} /> : null;
   const iconePerfil = (props.token ?? "") == "" ? "/svg/icone_perfil_branco.svg" : "/svg/icone_perfil_roxo.svg";
 
   return (
