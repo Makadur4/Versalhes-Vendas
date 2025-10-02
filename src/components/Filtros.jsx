@@ -1,8 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { obterMarcaTodas } from "../api/marca";
-import { obterTiposTodos } from "../api/tipo";
+import ApoioService from "../services/apoio-service";
 
 export default function (props) {
   const navigate = useNavigate();
@@ -29,24 +28,19 @@ export default function (props) {
   };
 
   async function atualizarListas() {
-    const resultadoMarcas = await obterMarcaTodas();
+    try {
+      const resultadoMarcas = await ApoioService.obterMarcas();
 
-    if (resultadoMarcas.mensagem != "") {
-      alert(resultadoMarcas.mensagem);
+      setMarcas(resultadoMarcas);
 
-      navigate("/");
-    }
+      const resultadoTipos = await ApoioService.obterTipos();
 
-    const resultadoTipos = await obterTiposTodos();
-
-    if (resultadoTipos.mensagem != "") {
-      alert(resultadoTipos.mensagem);
+      setTipos(resultadoTipos);
+    } catch (erro) {
+      alert(erro.obterMensagem());
 
       navigate("/");
     }
-
-    setMarcas(resultadoMarcas.lista);
-    setTipos(resultadoTipos.lista);
   }
 
   useEffect(() => {
@@ -102,7 +96,7 @@ export default function (props) {
             selecionarTipos(item.id);
           }}
         ></input>
-        {item.tipo}
+        {item.nome}
       </li>
     );
   });
@@ -126,7 +120,7 @@ export default function (props) {
             className="input_preco"
             type="range"
             id="price-range"
-            min="50.00"
+            min="50.000"
             max="2000.00"
             step="50"
             value={preco}
