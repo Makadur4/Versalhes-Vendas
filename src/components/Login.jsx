@@ -15,7 +15,7 @@ export default function (props) {
 
   async function concluirOperacao(e) {
     e.preventDefault();
-    console.log("ok");
+
     try {
       const token = await ClienteService.validarCliente(email, senha);
 

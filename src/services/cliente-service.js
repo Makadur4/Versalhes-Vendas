@@ -1,13 +1,15 @@
 import backend from "./backend";
 import { ApiException } from "./api-exception";
 
+import { converterDataPtEn, converterDataEnPt } from "../utils/formatacao-util";
+
 const ClienteService = {
   async incluirCliente(cpf, nome, dataNascimento, sexo, telefone, email, senha) {
     try {
       const body = {
         cpf: cpf,
         nome: nome,
-        dataNascimento: dataNascimento,
+        dataNascimento: converterDataPtEn(dataNascimento),
         sexo: sexo,
         telefone: telefone,
         email: email,
@@ -32,6 +34,8 @@ const ClienteService = {
 
       const response = await backend.get("cliente/obter-cliente", configuracoes);
 
+      response.data.dataNascimento = converterDataEnPt(response.data.dataNascimento);
+
       return response.data;
     } catch (error) {
       throw new ApiException(error.response?.status);
@@ -49,7 +53,7 @@ const ClienteService = {
       const body = {
         cpf: cpf,
         nome: nome,
-        dataNascimento: dataNascimento,
+        dataNascimento: converterDataPtEn(dataNascimento),
         sexo: sexo,
         telefone: telefone,
         email: email,
@@ -75,7 +79,7 @@ const ClienteService = {
 
       const response = await backend.get("cliente/validar-cliente", configuracoes);
 
-      return response;
+      return response.data;
     } catch (error) {
       console.log(error);
       throw new ApiException(error.response?.status);

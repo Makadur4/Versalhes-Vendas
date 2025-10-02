@@ -1,52 +1,13 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
-function MenuSemLogin(props) {
-  const navigate = useNavigate();
-
-  function abrirLogin() {
-    props.fecharModal();
-
-    navigate("/login?o=");
-  }
-
-  function abrirCadastro() {
-    props.fecharModal();
-
-    navigate("/cadastro");
-  }
-
-  return (
-    <div className="overlay" onClick={props.fecharModal}>
-      <div className="overlay_modal">
-        <div className="modal" onClick={(e) => e.stopPropagation()}>
-          <div className="botoes_modal">
-            <ul>
-              <li>
-                <button className="botao_modal" onClick={abrirLogin}>
-                  Entrar
-                </button>
-              </li>
-              <li>
-                <button className="botao_modal" onClick={abrirCadastro}>
-                  Cadastro
-                </button>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function MenuComLogin(props) {
+function MenuPerfil(props) {
   const navigate = useNavigate();
 
   function abrirCadastro() {
     props.fecharModal();
 
-    navigate("/cadastro");
+    navigate("/cadastro?o=");
   }
 
   function abrirPedidos() {
@@ -101,13 +62,13 @@ export default function (props) {
 
   function abrirPerfil() {
     if ((props.token ?? "") == "") {
-      setModal(1);
+      navigate("/login?o=");
     } else {
-      setModal(2);
+      setModal(1);
     }
   }
 
-  const componente = modal == 1 ? <MenuSemLogin fecharModal={fecharModal} /> : modal == 2 ? <MenuComLogin guardarToken={props.guardarToken} fecharModal={fecharModal} /> : null;
+  const componente = modal == 1 ? <MenuPerfil guardarToken={props.guardarToken} fecharModal={fecharModal} /> : null;
   const iconePerfil = (props.token ?? "") == "" ? "/svg/icone_perfil_branco.svg" : "/svg/icone_perfil_roxo.svg";
 
   return (
