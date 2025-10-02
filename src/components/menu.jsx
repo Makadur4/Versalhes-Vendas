@@ -5,12 +5,12 @@ export default function Menu() {
     <nav>
       <ul id="lista">
         <li className="objetos_das_listas">
-          <Link to="/masculino">
+          <Link to="/masculinos">
             <img src="/svg/texto_masculino.svg" />
           </Link>
         </li>
         <li className="objetos_das_listas">
-          <Link to="/feminino">
+          <Link to="/femininos">
             <img src="/svg/texto_feminino.svg" />
           </Link>
         </li>

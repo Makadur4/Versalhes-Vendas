@@ -1,22 +1,50 @@
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
-import { useState } from "react";
+function MenuSemLogin(props) {
+  return (
+    <div className="overlay" onClick={props.fecharModal}>
+      <div className="overlay_modal">
+        <div className="modal" onClick={(e) => e.stopPropagation()}>
+          <div className="botoes_modal">
+            <ul>
+              <li>
+                <Link to="/login">
+                  <button className="botao_modal">Entrar</button>
+                </Link>
+              </li>
+              <li>
+                <Link to="/cadastro">
+                  <button className="botao_modal">Cadastro</button>
+                </Link>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
 
-import ModalSemLogin from "./ModalSemLogin";
-
-export default function Cabecalho(props) {
+export default function (props) {
   const [modal, setModal] = useState(0);
 
   const navigate = useNavigate();
 
-  const componente = modal == 1 ? <ModalSemLogin abrirModal={abrirModal} fecharModal={fecharModal} /> : null;
-
-  function abrirModal() {
-    setModal(1);
-  }
   function fecharModal() {
     setModal(0);
   }
+
+  function abrirPerfil() {
+    if ((props.token ?? "") == "") {
+      setModal(1);
+    } else {
+      navigate("/cadastro");
+    }
+  }
+
+  const componente = modal == 1 ? <MenuSemLogin fecharModal={fecharModal} /> : null;
+  const iconePerfil = (props.token ?? "") == "" ? "/svg/icone_perfil_branco.svg" : "/svg/icone_perfil_roxo.svg";
 
   return (
     <header>
@@ -45,8 +73,8 @@ export default function Cabecalho(props) {
           <img id="lupa" src="/svg/icone_lupa_preto.svg" />
         </div>
         <div id="icones">
-          <a onClick={abrirModal}>
-            <img className="icone" src="/svg/icone_perfil_branco.svg" />
+          <a onClick={abrirPerfil}>
+            <img className="icone" src={iconePerfil} />
           </a>
           <Link to="/favoritos">
             <img className="icone" src="/svg/icone_coracao_branco.svg" />
