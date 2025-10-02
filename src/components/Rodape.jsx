@@ -32,7 +32,7 @@ function Contato() {
   );
 }
 
-export default function Rodape() {
+export default function () {
   return (
     <footer>
       <Links />
