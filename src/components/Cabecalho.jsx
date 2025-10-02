@@ -2,6 +2,20 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 function MenuSemLogin(props) {
+  const navigate = useNavigate();
+
+  function abrirLogin() {
+    props.fecharModal();
+
+    navigate("/login?o=");
+  }
+
+  function abrirCadastro() {
+    props.fecharModal();
+
+    navigate("/cadastro");
+  }
+
   return (
     <div className="overlay" onClick={props.fecharModal}>
       <div className="overlay_modal">
@@ -9,14 +23,14 @@ function MenuSemLogin(props) {
           <div className="botoes_modal">
             <ul>
               <li>
-                <Link to="/login">
-                  <button className="botao_modal">Entrar</button>
-                </Link>
+                <button className="botao_modal" onClick={abrirLogin}>
+                  Entrar
+                </button>
               </li>
               <li>
-                <Link to="/cadastro">
-                  <button className="botao_modal">Cadastro</button>
-                </Link>
+                <button className="botao_modal" onClick={abrirCadastro}>
+                  Cadastro
+                </button>
               </li>
             </ul>
           </div>
