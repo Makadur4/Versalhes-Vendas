@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 
-import { efetuarLogin } from "../api/cliente";
+import ClienteService from "../services/cliente-service";
 
 export default function (props) {
   const [email, setEmail] = useState("");
@@ -15,18 +15,20 @@ export default function (props) {
 
   async function concluirOperacao(e) {
     e.preventDefault();
+    console.log("ok");
+    try {
+      const token = await ClienteService.validarCliente(email, senha);
 
-    const resultado = await efetuarLogin(email, senha);
+      props.guardarToken(token);
 
-    if (resultado.mensagem != "") {
-      alert(resultado.mensagem);
-
-      return;
+      navigate(`/${origem}`);
+    } catch (erro) {
+      if (erro.codigo == 404) {
+        alert("Usuário não encontrado. Por favor, verifique os dados e tente novamente!");
+      } else {
+        alert(erro.obterMensagem());
+      }
     }
-
-    props.guardarToken(resultado.token);
-
-    navigate(`/${origem}`);
   }
 
   return (
