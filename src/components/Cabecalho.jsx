@@ -70,6 +70,7 @@ export default function (props) {
 
   const componente = modal == 1 ? <MenuPerfil guardarToken={props.guardarToken} fecharModal={fecharModal} /> : null;
   const iconePerfil = (props.token ?? "") == "" ? "/svg/icone_perfil_branco.svg" : "/svg/icone_perfil_roxo.svg";
+  const iconeCarrinho = props.carrinho.length == 0 ? "/svg/icone_carrinho_branco.svg" : "/svg/icone_carrinho_roxo.svg";
 
   return (
     <header>
@@ -105,7 +106,7 @@ export default function (props) {
             <img className="icone" src="/svg/icone_coracao_branco.svg" />
           </Link>
           <Link to="/carrinho">
-            <img className="icone" src="/svg/icone_carrinho_branco.svg" />
+            <img className="icone" src={iconeCarrinho} />
           </Link>
         </div>
       </div>
