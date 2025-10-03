@@ -283,6 +283,40 @@ main {
   align-items: center;
 }
 
+.etapas_pedido {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.etapa_pedido {
+  border-radius: 50%;
+  padding: 10px;
+  border: solid 4px #999;
+  width: 100px;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+}
+
+.linha_etapa {
+  width: 80px;
+  height: 0px;
+  border: solid 2px;
+  border-color: #999;
+}
+
+.etapa_concluida {
+  border-color: #1388f3 !important;
+}
+
+.etapas_pedido img {
+  height: 80px;
+  width: 80px;
+}
+
 .moldura_perfume_pedido {
   height: 80px;
   width: 100px;

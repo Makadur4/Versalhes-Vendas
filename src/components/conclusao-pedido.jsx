@@ -117,7 +117,7 @@ export default function (props) {
               <span>{pedido && converterDataEnPt(pedido.dataEntrega)}</span>
             </div>
           </div>
-          <Link to="/pedido">
+          <Link to={`/detalhe-pedido/${pedido && pedido.id}`}>
             <button className="botao_concluir">Acompanhar o pedido</button>
           </Link>
         </div>
