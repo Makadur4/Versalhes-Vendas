@@ -1,8 +1,8 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-import CardPreco from "./CardPreco";
-import CardCarrinho from "./CardCarrinho";
+import CardPreco from "./card-preco";
+import CardCarrinho from "./card-carrinho";
 
 export default function Carrinho(props) {
   const navigate = useNavigate();
