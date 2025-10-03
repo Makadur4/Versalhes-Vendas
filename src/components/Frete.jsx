@@ -1,23 +1,29 @@
 import { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
-import { obterEnderecoEntrega } from "../api/cliente";
+import ApoioService from "../services/apoio-service";
+import ClienteService from "../services/cliente-service";
+
+import Config from "../config";
 
 export default function (props) {
   const [endereco, setEndereco] = useState();
+  const [fretes, setFretes] = useState([]);
+
+  const [freteId, setFreteId] = useState("");
 
   const navigate = useNavigate();
 
-  async function consultarEnderecoEntrega() {
-    const resultado = await obterEnderecoEntrega(props.token);
+  async function obterEnderecoEntrega() {
+    try {
+      const resultado = await ClienteService.obterEnderecoCliente(props.token);
 
-    if (resultado.mensagem != "") {
-      alert(resultado.mensagem);
+      setEndereco(resultado);
+    } catch (erro) {
+      alert(erro.obterMensagem());
 
-      return;
+      navigate("/");
     }
-
-    setEndereco(resultado.endereco);
   }
 
   useEffect(() => {
@@ -35,12 +41,38 @@ export default function (props) {
       return;
     }
 
-    consultarEnderecoEntrega();
+    obterEnderecoEntrega();
   }, []);
+
+  async function obterOpcoesFrete() {
+    try {
+      if (endereco == null || (endereco.cep ?? "") == "") {
+        return;
+      }
+
+      const resultado = await ApoioService.obterFretesCep(endereco.cep);
+
+      setFretes(resultado);
+    } catch (erro) {
+      alert(erro.obterMensagem());
+
+      navigate("/");
+    }
+  }
+
+  useEffect(() => {
+    obterOpcoesFrete();
+  }, [endereco]);
+
+  function confirmarOperacao() {
+    props.setFreteId(freteId);
+
+    navigate("/pagamento");
+  }
 
   let componente;
 
-  if (endereco != null && endereco.cep != "") {
+  if (endereco != null && (endereco.cep ?? "") != "") {
     componente = (
       <>
         <div className="endereço">
@@ -82,56 +114,108 @@ export default function (props) {
     );
   }
 
+  const listaFretes = fretes.map(function (item) {
+    const precoFrete =
+      item.valor == 0
+        ? "Gratis"
+        : `R$ ${item.valor.toLocaleString("pt-BR", {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2,
+          })}`;
+    return (
+      <div key={item.id} className="formas_entrega">
+        <input
+          type="radio"
+          name="entrega"
+          value={item.id}
+          checked={freteId === item.id.toString()}
+          onChange={(e) => {
+            setFreteId(e.target.value);
+          }}
+        />
+        <label>{`Receba em até ${item.prazo} dias - ${precoFrete}`}</label>
+      </div>
+    );
+  });
+
+  let valorTotal = 0;
+  let valorFrete = 0;
+
+  const listaProdutos = props.carrinho.map(function (item, indice) {
+    const precoVenda = `R$ ${item.precoVenda.toLocaleString("pt-BR", {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    })}`;
+
+    const precoTotal = `R$ ${(item.precoVenda * item.quantidade).toLocaleString("pt-BR", {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    })}`;
+
+    valorTotal += item.precoVenda * item.quantidade;
+
+    const moldura = indice == 0 ? "primeira_moldura" : "segunda_moldura";
+
+    return (
+      <div key={item.id} className={moldura}>
+        <div className="produto_pedido">
+          <div className="moldura_perfume_pedido">
+            <img src={`${Config.urlApi}perfume/obter-imagem/${item.id}`}></img>
+          </div>
+          <span>{item.nome}</span>
+          <span>
+            {precoVenda}
+            <br />x{item.quantidade}
+            <br /> {precoTotal}
+          </span>
+        </div>
+      </div>
+    );
+  });
+
+  if (freteId && (freteId ?? "") != "") {
+    const freteSelecionado = fretes.find((item) => item.id == freteId) ?? 0;
+
+    valorFrete = freteSelecionado ? freteSelecionado.valor : 0;
+    valorTotal += valorFrete;
+  }
+
   return (
     <main className="detalhe">
       <div className="card_frete">
         <div className="moldura_frete">{componente}</div>
         <div className="moldura_forma_entrega">
-          <span>Escolha uma forma de receber o produto</span>
-          <div className="formas_entrega">
-            <input type="radio" name="entrega" />
-            <label>Receba em até 30 dias - Grátis</label>
-          </div>
-          <div className="formas_entrega">
-            <input type="radio" name="entrega" />
-            <label>Receba em até 10 dias - R$ 15,00</label>
-          </div>
+          <span>Escolha uma forma de receber o produto:</span>
+          {listaFretes}
         </div>
       </div>
       <div className="card_dados_pedido">
-        <div className="primeira_moldura">
-          <div className="produto_pedido">
-            <div className="moldura_perfume_pedido">
-              <img src="/img/perfume1.png"></img>
-            </div>
-            <span>PERFUME DIOR SAUVAGE MASCULINO EAU DE TOILETTE</span>
-          </div>
-        </div>
-        <div className="segunda_moldura">
-          <div className="produto_pedido">
-            <div className="moldura_perfume_pedido">
-              <img src="/img/perfume1.png"></img>
-            </div>
-            <span>PERFUME DIOR SAUVAGE MASCULINO EAU DE TOILETTE</span>
-          </div>
-        </div>
+        {listaProdutos}
         <div className="terceira_moldura">
-          <span>2 unidades</span>
+          <span>{props.carrinho.length} unidades</span>
           <div className="custos">
             <div className="coluna_dados">
-              <span>Desconto</span>
               <span>Frete</span>
               <span>Valor</span>
             </div>
             <div className="coluna_dados">
-              <span>R$ 0,00</span>
-              <span>R$ 15,00</span>
-              <span>R$ 404,99</span>
+              <span>
+                {valorFrete.toLocaleString("pt-BR", {
+                  minimumFractionDigits: 2,
+                  maximumFractionDigits: 2,
+                })}
+              </span>
+              <span>
+                {valorTotal.toLocaleString("pt-BR", {
+                  minimumFractionDigits: 2,
+                  maximumFractionDigits: 2,
+                })}
+              </span>
             </div>
           </div>
-          <Link to="/pagamento">
-            <button className="botao_prosseguir">Prosseguir</button>
-          </Link>
+          <button className="botao_prosseguir" onClick={confirmarOperacao}>
+            Prosseguir
+          </button>
         </div>
       </div>
     </main>

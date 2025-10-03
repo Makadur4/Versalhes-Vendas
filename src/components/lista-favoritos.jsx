@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import FavoritoService from "../services/favorito-service";
 
@@ -6,6 +7,8 @@ import CardFavorito from "./card-favorito";
 
 export default function ListaFavoritos(props) {
   const [lista, setLista] = useState([]);
+
+  const navigate = useNavigate();
 
   async function excluirFavorito(id) {
     try {
@@ -28,6 +31,12 @@ export default function ListaFavoritos(props) {
   }
 
   useEffect(() => {
+    if (!props.token || props.token == "") {
+      navigate("/login?o=favoritos");
+
+      return;
+    }
+
     atualizarLista();
   }, []);
 

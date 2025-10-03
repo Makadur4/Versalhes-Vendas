@@ -1,10 +1,12 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { formatarCep } from "../utils/formatacao";
-import { gravarEnderecoEntrega } from "../api/cliente";
+import ClienteService from "../services/cliente-service";
 
-export default function () {
+import { formatarCep } from "../utils/formatacao-util";
+import ApoioService from "../services/apoio-service";
+
+export default function (props) {
   const [cep, setCep] = useState("");
   const [endereco, setEndereco] = useState("");
   const [numero, setNumero] = useState("");
@@ -12,22 +14,53 @@ export default function () {
   const [bairro, setBairro] = useState("");
   const [municipio, setMunicipio] = useState("");
   const [uf, setUf] = useState("");
-  const [responsavel, setResponsavel] = useState("");
 
   const navigate = useNavigate();
 
-  async function concluirOperacao(e) {
-    e.preventDefault();
+  async function atualizarDados() {
+    try {
+      const endrecoCliente = await ClienteService.obterEnderecoCliente(props.token);
 
-    const resultado = await gravarEnderecoEntrega(cep, endereco, numero, complemento, bairro, municipio, uf, responsavel);
+      if (endrecoCliente.cep == null) {
+        return;
+      }
 
-    if (resultado.mensagem != "") {
-      alert(resultado.mensagem);
+      setCep(endrecoCliente.cep);
+      setEndereco(endrecoCliente.endereco);
+      setNumero(endrecoCliente.numero);
+      setComplemento(endrecoCliente.complemento);
+      setBairro(endrecoCliente.bairro);
+      setMunicipio(endrecoCliente.municipio);
+      setUf(endrecoCliente.uf);
+    } catch (erro) {
+      alert(erro.obterMensagem());
+
+      navigate("/");
+    }
+  }
+
+  useEffect(() => {
+    if (!props.token || props.token == "") {
+      navigate("/login?o=endereco");
 
       return;
     }
 
-    navigate("/frete");
+    atualizarDados();
+  }, []);
+
+  async function concluirOperacao(e) {
+    e.preventDefault();
+
+    try {
+      await ClienteService.alterarEnderecoCliente(props.token, cep, endereco, numero, complemento, bairro, municipio, uf);
+
+      navigate("/frete");
+    } catch (erro) {
+      alert(erro.obterMensagem());
+
+      navigate("/");
+    }
   }
 
   return (
@@ -49,15 +82,13 @@ export default function () {
                 }}
                 required
               ></input>
-            </div>
-            <div>
               <label className="label" htmlFor="endereco">
                 Endereco:
               </label>
               <input
                 type="text"
                 className="input"
-                id="senha"
+                id="endereco"
                 value={endereco}
                 onChange={(e) => {
                   setEndereco(e.target.value);
@@ -121,6 +152,8 @@ export default function () {
                 UF:
               </label>
               <select
+                className="input3"
+                id="uf"
                 value={uf}
                 onChange={(e) => {
                   setUf(e.target.value);
@@ -155,21 +188,6 @@ export default function () {
                 <option value="SP">SP</option>
                 <option value="TO">TO</option>
               </select>
-            </div>
-            <div>
-              <label className="label" htmlFor="responsavel">
-                Responsavel:
-              </label>
-              <input
-                type="text"
-                className="input3"
-                id="cep"
-                value={responsavel}
-                onChange={(e) => {
-                  setResponsavel(e.target.value);
-                }}
-                required
-              ></input>
             </div>
           </div>
           <button type="submit" className="botao_cadastro">

@@ -134,7 +134,6 @@ export default function (props) {
                   <input
                     type="radio"
                     htmlFor="genero"
-                    name="genero"
                     value="M"
                     checked={sexo === "M"}
                     onChange={(e) => {
@@ -148,7 +147,6 @@ export default function (props) {
                 <div className="feminino">
                   <input
                     type="radio"
-                    htmlFor="genero"
                     name="genero"
                     value="F"
                     checked={sexo === "F"}

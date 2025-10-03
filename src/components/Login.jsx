@@ -66,7 +66,7 @@ export default function (props) {
           ></input>
         </div>
         <div className="esqueceu_senha">
-          <Link to="/recuperarsenha">
+          <Link to="/recuperar-senha">
             <span>Esqueceu a senha?</span>
           </Link>
         </div>

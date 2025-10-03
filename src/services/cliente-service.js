@@ -143,10 +143,9 @@ const ClienteService = {
         bairro: bairro,
         municipio: municipio,
         uf: uf,
-        responsavel: responsavel,
       };
 
-      const response = await backend.put("cliente/obter-cliente", body, configuracoes);
+      const response = await backend.put("cliente/alterar-endereco-cliente", body, configuracoes);
 
       return response.data;
     } catch (error) {
