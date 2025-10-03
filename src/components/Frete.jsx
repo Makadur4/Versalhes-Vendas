@@ -65,7 +65,9 @@ export default function (props) {
   }, [endereco]);
 
   function confirmarOperacao() {
-    props.setFreteId(freteId);
+    const frete = fretes.find((item) => item.id.toString() == freteId);
+
+    props.setFrete(frete);
 
     navigate("/pagamento");
   }
@@ -138,7 +140,7 @@ export default function (props) {
     );
   });
 
-  let valorTotal = 0;
+  let valorProdutos = 0;
   let valorFrete = 0;
 
   const listaProdutos = props.carrinho.map(function (item, indice) {
@@ -152,7 +154,7 @@ export default function (props) {
       maximumFractionDigits: 2,
     })}`;
 
-    valorTotal += item.precoVenda * item.quantidade;
+    valorProdutos += item.precoVenda * item.quantidade;
 
     const moldura = indice == 0 ? "primeira_moldura" : "segunda_moldura";
 
@@ -177,8 +179,9 @@ export default function (props) {
     const freteSelecionado = fretes.find((item) => item.id == freteId) ?? 0;
 
     valorFrete = freteSelecionado ? freteSelecionado.valor : 0;
-    valorTotal += valorFrete;
   }
+
+  const valorTotal = valorProdutos + valorFrete;
 
   return (
     <main className="detalhe">
@@ -195,10 +198,17 @@ export default function (props) {
           <span>{props.carrinho.length} unidades</span>
           <div className="custos">
             <div className="coluna_dados">
+              <span>Produtos</span>
               <span>Frete</span>
-              <span>Valor</span>
+              <span>Total</span>
             </div>
             <div className="coluna_dados">
+              <span>
+                {valorProdutos.toLocaleString("pt-BR", {
+                  minimumFractionDigits: 2,
+                  maximumFractionDigits: 2,
+                })}
+              </span>
               <span>
                 {valorFrete.toLocaleString("pt-BR", {
                   minimumFractionDigits: 2,
