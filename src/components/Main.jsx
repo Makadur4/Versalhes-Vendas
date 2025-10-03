@@ -1,12 +1,11 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 
-import Banner from "./Banner";
-import ListaProdutos from "./ListaProdutos";
-import ListaFavoritos from "./ListaFavoritos";
-import Filtros from "./Filtros";
+import ListaProdutos from "./lista-produtos";
+import ListaFavoritos from "./lista-favoritos";
+import Filtros from "./filtros";
 
-export default function Main(props) {
+export default function (props) {
   const location = useLocation();
   const parametros = new URLSearchParams(location.search);
   const pesquisa = parametros.get("p");
@@ -23,27 +22,28 @@ export default function Main(props) {
   let lista;
 
   if (props.secao == "") {
-    if (props.pesquisa ?? "" == "") {
-      banner = <Banner />;
-    }
+    banner =
+      props.pesquisa ?? "" == "" ? (
+        <div id="banner">
+          <img id="imagem_banner" src="/img/banner.png" />
+        </div>
+      ) : null;
 
-    if (pesquisa ?? "" != "") {
-      titulo = <h1>{`Resultados para '${pesquisa}'`}</h1>;
-    }
+    titulo = pesquisa ?? "" != "" ? (titulo = <h1>{`Resultados para '${pesquisa}'`}</h1>) : null;
 
-    lista = <ListaProdutos secao="" pesquisa={pesquisa} quantidadeParcelas={props.quantidadeParcelas} />;
+    lista = <ListaProdutos pesquisa={pesquisa} secao="" filtros={filtros} quantidadeParcelas={props.quantidadeParcelas} />;
   } else {
     titulo = (
       <h1>
-        <img src={`/svg/texto_${props.secao}.svg`}></img>
+        <img src={`/svg/texto_${props.secao.toLowerCase()}.svg`}></img>
       </h1>
     );
 
-    if (props.secao == "favoritos") {
-      lista = <ListaFavoritos />;
+    if (props.secao == "Favoritos") {
+      lista = <ListaFavoritos token={props.token} />;
     } else {
       filtro = <Filtros setFiltros={setFiltros} />;
-      lista = <ListaProdutos secao={props.secao} filtros={filtros} quantidadeParcelas={props.quantidadeParcelas} />;
+      lista = <ListaProdutos pesquisa="" secao={props.secao} filtros={filtros} quantidadeParcelas={props.quantidadeParcelas} />;
     }
   }
 
