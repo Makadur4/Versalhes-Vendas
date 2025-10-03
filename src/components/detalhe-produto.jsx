@@ -35,10 +35,10 @@ export default function (props) {
   function adicionarProdutoCarrinho() {
     const colecao = props.carrinho;
 
-    let produto = colecao.find((item) => item.id === detalhes.id);
+    let produto = colecao.find((item) => item.id === perfume.id);
 
     if (!produto) {
-      produto = { id: detalhes.id, nome: detalhes.nome, precoVenda: detalhes.precoVenda, quantidade: 0 };
+      produto = { id: perfume.id, nome: perfume.nome, precoVenda: perfume.precoVenda, quantidade: 0 };
 
       colecao.push(produto);
     }
