@@ -33,7 +33,7 @@ const PedidoService = {
         },
       };
 
-      const response = await backend.post("pedido/obter-pedidos", configuracoes);
+      const response = await backend.get("pedido/obter-pedidos", configuracoes);
 
       return response.data;
     } catch (erro) {
