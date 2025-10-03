@@ -22,7 +22,7 @@ export default function (props) {
   }, [props.secao, props.pesquisa, props.filtros]);
 
   const componente = lista.map(function (item) {
-    return <CardProduto key={item.id} id={item.id} nome={item.nome} preco={item.precoVenda} parcelas={props.quantidadeParcelas} />;
+    return <CardProduto key={item.id} id={item.id} nome={item.nome} preco={item.precoVenda} parcelas={props.quantidadeParcelas} estoque={item.estoque} />;
   });
 
   return (

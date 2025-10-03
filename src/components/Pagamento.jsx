@@ -11,7 +11,6 @@ export default function (props) {
   const [nomeCartao, setNomeCartao] = useState("");
   const [dataValidade, setDataValidade] = useState("");
   const [codigoSeguranca, setCodigoSeguranca] = useState("");
-  const [quantidadeParcelas, setQuantidadeParcelas] = useState("");
 
   const [condicaoPagamento, setCondicaoPagamento] = useState(0);
   const [percentualAcrescimo, setPercentualAcrescimo] = useState(0);
@@ -38,6 +37,9 @@ export default function (props) {
 
       return;
     }
+
+    setBandeiraCartao("VISA");
+    setCondicaoPagamento(props.condicoesPagamento[0].id);
   }, []);
 
   function selecionarCondicaoPagamento(e) {
@@ -46,7 +48,6 @@ export default function (props) {
     const condicaoSelecionada = props.condicoesPagamento.find((item) => item.id.toString() == e.target.value);
 
     setPercentualAcrescimo(condicaoSelecionada.percentualAcrescimo);
-    setQuantidadeParcelas(condicaoSelecionada.quantidadeParcelas);
   }
 
   async function confirmarOperacao() {

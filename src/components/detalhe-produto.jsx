@@ -111,7 +111,7 @@ export default function (props) {
           <div className="descricao_produto">{perfume && perfume.descricao}</div>
         </div>
       </div>
-      <CardPreco continuar={false} preco={perfume && perfume.precoVenda} parcelas={props.quantidadeParcelas} adicionarProdutoCarrinho={adicionarProdutoCarrinho} />
+      <CardPreco continuar={false} preco={perfume && perfume.precoVenda} parcelas={props.quantidadeParcelas} estoque={perfume && perfume.estoque} adicionarProdutoCarrinho={adicionarProdutoCarrinho} />
     </main>
   );
 }

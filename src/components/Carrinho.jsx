@@ -39,7 +39,7 @@ export default function Carrinho(props) {
       <div className="card_descricao">
         <div className="conteudo_card">{listaCarrinho}</div>
       </div>
-      <CardPreco continuar={true} preco={valorTotal} parcelas="4" />
+      <CardPreco continuar={true} preco={valorTotal} parcelas={props.quantidadeParcelas} estoque={1} />
     </main>
   );
 }

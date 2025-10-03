@@ -84,7 +84,7 @@ function App() {
           <Route path="/frete" element={<Frete token={token} carrinho={carrinho} setFrete={setFrete} />} />
           <Route path="/endereco" element={<Endereco token={token} />} />
           <Route path="/pagamento" element={<Pagamento token={token} frete={frete} carrinho={carrinho} condicoesPagamento={condicoesPagamento} />} />
-          <Route path="/conclusao-pedido" element={<ConclusaoPedido token={token} guardarCarrinho={guardarCarrinho} />} />
+          <Route path="/conclusao-pedido/:id" element={<ConclusaoPedido token={token} guardarCarrinho={guardarCarrinho} />} />
           <Route path="/pedidos" element={<Pedidos token={token} />} />
           <Route path="/detalhe-pedido/:id" element={<DetalhePedido token={token} />} />
           <Route path="/login" element={<Login guardarToken={guardarToken} token={token} />} />

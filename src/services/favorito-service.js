@@ -15,8 +15,8 @@ const FavoritoService = {
       };
 
       await backend.post("favorito/incluir-favorito", body, configuracoes);
-    } catch (error) {
-      throw new ApiException(error.response?.status);
+    } catch (erro) {
+      throw new ApiException(erro.response?.status);
     }
   },
 
@@ -31,8 +31,8 @@ const FavoritoService = {
       const response = await backend.get(`favorito/obter-favoritos`, configuracoes);
 
       return response.data;
-    } catch (error) {
-      throw new ApiException(error.response?.status);
+    } catch (erro) {
+      throw new ApiException(erro.response?.status);
     }
   },
 
@@ -47,8 +47,8 @@ const FavoritoService = {
       const response = await backend.get(`favorito/obter-favorito/${perfumeId}`, configuracoes);
 
       return response.data;
-    } catch (error) {
-      throw new ApiException(error.response?.status);
+    } catch (erro) {
+      throw new ApiException(erro.response?.status);
     }
   },
 
@@ -63,8 +63,8 @@ const FavoritoService = {
       const response = await backend.delete(`favorito/excluir-favorito/${id}`, configuracoes);
 
       return response.data;
-    } catch (error) {
-      throw new ApiException(error.response?.status);
+    } catch (erro) {
+      throw new ApiException(erro.response?.status);
     }
   },
 };

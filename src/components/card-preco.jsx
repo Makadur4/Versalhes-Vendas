@@ -33,7 +33,7 @@ export default function (props) {
   let botao1;
   let botao2;
 
-  if (props.continuar == false) {
+  if (props.continuar == false && props.estoque != 0) {
     botao1 = (
       <button
         className="botao_comprar"
@@ -59,9 +59,13 @@ export default function (props) {
     );
   }
 
-  return (
-    <div className="card_preco">
-      <div className="precos_produto">
+  const preco =
+    props.estoque == 0 ? (
+      <div style={{ marginBottom: "10px" }}>
+        <span className="valor">Indisponível</span>
+      </div>
+    ) : (
+      <>
         <div style={{ marginBottom: "10px" }}>
           <span className="valor">
             R${" "}
@@ -71,10 +75,15 @@ export default function (props) {
                 maximumFractionDigits: 2,
               })}
           </span>
-          <span className="a_vista">Á vista</span>
+          <span className="a_vista">à vista</span>
         </div>
         <div style={{ marginBottom: "35px" }}>ou em até {props.parcelas}x (consulte condições)</div>
-      </div>
+      </>
+    );
+
+  return (
+    <div className="card_preco">
+      <div className="precos_produto">{preco}</div>
       <div className="calcular">
         <span>Calcular o frete</span>
       </div>

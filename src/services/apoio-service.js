@@ -7,8 +7,8 @@ const ApoioService = {
       const response = await backend.get("apoio/obter-marcas");
 
       return response.data;
-    } catch (error) {
-      throw new ApiException(error.response?.status);
+    } catch (erro) {
+      throw new ApiException(erro.response?.status);
     }
   },
 
@@ -17,8 +17,8 @@ const ApoioService = {
       const response = await backend.get("apoio/obter-tipos");
 
       return response.data;
-    } catch (error) {
-      throw new ApiException(error.response?.status);
+    } catch (erro) {
+      throw new ApiException(erro.response?.status);
     }
   },
 
@@ -27,8 +27,8 @@ const ApoioService = {
       const response = await backend.get("apoio/obter-condicoes-pagamento");
 
       return response.data;
-    } catch (error) {
-      throw new ApiException(error.response?.status);
+    } catch (erro) {
+      throw new ApiException(erro.response?.status);
     }
   },
 
@@ -37,8 +37,8 @@ const ApoioService = {
       const response = await backend.get(`apoio/obter-fretes-cep/${cep}`);
 
       return response.data;
-    } catch (error) {
-      throw new ApiException(error.response?.status);
+    } catch (erro) {
+      throw new ApiException(erro.response?.status);
     }
   },
 };

@@ -19,8 +19,8 @@ const ClienteService = {
       const response = await backend.post("cliente/incluir-cliente", body);
 
       return response.data;
-    } catch (error) {
-      throw new ApiException(error.response?.status);
+    } catch (erro) {
+      throw new ApiException(erro.response?.status);
     }
   },
 
@@ -37,8 +37,8 @@ const ClienteService = {
       response.data.dataNascimento = converterDataEnPt(response.data.dataNascimento);
 
       return response.data;
-    } catch (error) {
-      throw new ApiException(error.response?.status);
+    } catch (erro) {
+      throw new ApiException(erro.response?.status);
     }
   },
 
@@ -63,8 +63,8 @@ const ClienteService = {
       const response = await backend.put("cliente/alterar-cliente", body, configuracoes);
 
       return response.data;
-    } catch (error) {
-      throw new ApiException(error.response?.status);
+    } catch (erro) {
+      throw new ApiException(erro.response?.status);
     }
   },
 
@@ -80,9 +80,8 @@ const ClienteService = {
       const response = await backend.get("cliente/validar-cliente", configuracoes);
 
       return response.data;
-    } catch (error) {
-      console.log(error);
-      throw new ApiException(error.response?.status);
+    } catch (erro) {
+      throw new ApiException(erro.response?.status);
     }
   },
 
@@ -93,8 +92,8 @@ const ClienteService = {
       };
 
       await backend.patch("/cliente/solicitar-recuperacao-senha", body);
-    } catch (error) {
-      throw new ApiException(error.response?.status);
+    } catch (erro) {
+      throw new ApiException(erro.response?.status);
     }
   },
 
@@ -106,8 +105,8 @@ const ClienteService = {
       };
 
       await backend.patch("cliente/alterar-senha", body);
-    } catch (error) {
-      throw new ApiException(error.response?.status);
+    } catch (erro) {
+      throw new ApiException(erro.response?.status);
     }
   },
 
@@ -122,8 +121,8 @@ const ClienteService = {
       const response = await backend.get("cliente/obter-endereco-cliente", configuracoes);
 
       return response.data;
-    } catch (error) {
-      throw new ApiException(error.response?.status);
+    } catch (erro) {
+      throw new ApiException(erro.response?.status);
     }
   },
 
@@ -148,8 +147,8 @@ const ClienteService = {
       const response = await backend.put("cliente/alterar-endereco-cliente", body, configuracoes);
 
       return response.data;
-    } catch (error) {
-      throw new ApiException(error.response?.status);
+    } catch (erro) {
+      throw new ApiException(erro.response?.status);
     }
   },
 };

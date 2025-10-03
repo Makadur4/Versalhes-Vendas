@@ -16,8 +16,8 @@ const PerfumeSevice = {
       const response = await backend.get("perfume/obter-perfumes-venda", configuracoes);
 
       return response.data;
-    } catch (error) {
-      throw new ApiException(error.response?.status);
+    } catch (erro) {
+      throw new ApiException(erro.response?.status);
     }
   },
 
@@ -26,8 +26,8 @@ const PerfumeSevice = {
       const response = await backend.get(`perfume/obter-perfume/${id}`);
 
       return response.data;
-    } catch (error) {
-      throw new ApiException(error.response?.status);
+    } catch (erro) {
+      throw new ApiException(erro.response?.status);
     }
   },
 };

@@ -20,8 +20,8 @@ const PedidoService = {
       const response = await backend.post("pedido/incluir-pedido", body, configuracoes);
 
       return response.data;
-    } catch (error) {
-      throw new ApiException(error.response?.status);
+    } catch (erro) {
+      throw new ApiException(erro.response?.status);
     }
   },
 
@@ -36,8 +36,8 @@ const PedidoService = {
       const response = await backend.post("pedido/obter-pedidos", configuracoes);
 
       return response.data;
-    } catch (error) {
-      throw new ApiException(error.response?.status);
+    } catch (erro) {
+      throw new ApiException(erro.response?.status);
     }
   },
 
@@ -52,8 +52,8 @@ const PedidoService = {
       const response = await backend.get(`pedido/obter-pedido/${id}`, configuracoes);
 
       return response.data;
-    } catch (error) {
-      throw new ApiException(error.response?.status);
+    } catch (erro) {
+      throw new ApiException(erro.response?.status);
     }
   },
 
@@ -66,8 +66,8 @@ const PedidoService = {
       };
 
       await backend.patch(`pedido/cancelar-pedido/${id}`, {}, configuracoes);
-    } catch (error) {
-      throw new ApiException(error.response?.status);
+    } catch (erro) {
+      throw new ApiException(erro.response?.status);
     }
   },
 };
