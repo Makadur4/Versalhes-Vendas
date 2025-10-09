@@ -45,7 +45,9 @@ export default function (props) {
   function selecionarCondicaoPagamento(e) {
     setCondicaoPagamento(e.target.value);
 
-    const condicaoSelecionada = props.condicoesPagamento.find((item) => item.id.toString() == e.target.value);
+    const condicaoSelecionada = props.condicoesPagamento.find(
+      (item) => item.id.toString() == e.target.value
+    );
 
     setPercentualAcrescimo(condicaoSelecionada.percentualAcrescimo);
   }
@@ -69,18 +71,31 @@ export default function (props) {
         };
       });
 
-      const pedido = await PedidoService.incluirPedido(props.token, props.frete.id, condicaoPagamento, dadosPagamento, itensPedido);
+      const pedido = await PedidoService.incluirPedido(
+        props.token,
+        props.frete.id,
+        condicaoPagamento,
+        dadosPagamento,
+        itensPedido
+      );
 
       navigate(`/conclusao-pedido/${pedido.id}`);
     } catch (erro) {
-      alert(erro.obterMensagem());
+      if (erro.codigo == 400) {
+        alert(
+          "Compra NÃO aprovada pela administradora de cartões. Por favor, verifique os dados e tente novamente!"
+        );
+      } else {
+        alert(erro.obterMensagem());
+      }
     }
   }
 
   const listaParcelas = props.condicoesPagamento.map((item) => {
     return (
       <option key={item.id} value={item.id}>
-        {item.quantidadeParcelas}x {item.percentualAcrescimo == 0 ? "" : "(c/ juros)"}{" "}
+        {item.quantidadeParcelas}x{" "}
+        {item.percentualAcrescimo == 0 ? "" : "(c/ juros)"}{" "}
       </option>
     );
   });
@@ -94,10 +109,13 @@ export default function (props) {
       maximumFractionDigits: 2,
     })}`;
 
-    const precoTotal = `R$ ${(item.precoVenda * item.quantidade).toLocaleString("pt-BR", {
-      minimumFractionDigits: 2,
-      maximumFractionDigits: 2,
-    })}`;
+    const precoTotal = `R$ ${(item.precoVenda * item.quantidade).toLocaleString(
+      "pt-BR",
+      {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2,
+      }
+    )}`;
 
     valorTotal += item.precoVenda * item.quantidade;
 
@@ -191,7 +209,12 @@ export default function (props) {
           <div className="coluna_input">
             <div className="input_pagamento">
               <span>Número de parcelas:</span>
-              <select type="text" className="input_100" value={condicaoPagamento} onChange={selecionarCondicaoPagamento}>
+              <select
+                type="text"
+                className="input_100"
+                value={condicaoPagamento}
+                onChange={selecionarCondicaoPagamento}
+              >
                 {listaParcelas}
               </select>
             </div>
