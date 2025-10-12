@@ -19,7 +19,9 @@ export default function (props) {
 
   async function atualizarDados() {
     try {
-      const endrecoCliente = await ClienteService.obterEnderecoCliente(props.token);
+      const endrecoCliente = await ClienteService.obterEnderecoCliente(
+        props.token
+      );
 
       if (endrecoCliente.cep == null) {
         return;
@@ -53,7 +55,16 @@ export default function (props) {
     e.preventDefault();
 
     try {
-      await ClienteService.alterarEnderecoCliente(props.token, cep, endereco, numero, complemento, bairro, municipio, uf);
+      await ClienteService.alterarEnderecoCliente(
+        props.token,
+        cep,
+        endereco,
+        numero,
+        complemento,
+        bairro,
+        municipio,
+        uf
+      );
 
       navigate("/frete");
     } catch (erro) {
