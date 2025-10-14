@@ -54,6 +54,12 @@ main {
   flex-grow: 1;
 }
 
+.main_centralizada{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 /* BOTÕES */
 
 .grupo_botoes {
@@ -66,21 +72,19 @@ main {
 .botao_destaque {
   color: #ffffff;
   background-color: var(--cor-destaque);
-  height: 30px;
   border-radius: 5px;
   border: solid;
   border-width: 1px;
-  width: 80px;
+  padding: 8px;
   font-size: 15px;
 }
 
 .botao_branco {
   background-color: #ffffff;
-  height: 30px;
+  padding: 8px;
   border-radius: 5px;
   border: solid;
   border-width: 1px;
-  width: 80px;
   font-size: 15px;
 }
 
@@ -142,7 +146,7 @@ main {
 }
 
 .conteudo_card {
-  display: block;
+  width: 100%;
 }
 
 .valor_produto_carrinho {
@@ -178,11 +182,11 @@ main {
 }
 
 .moldura_produto {
+  box-sizing: border-box;
   display: flex;
   gap: 20px;
   border: solid;
   padding: 20px;
-  height: 121px;
   width: 100%;
   margin-bottom: 25px;
 }
@@ -235,7 +239,6 @@ main {
   justify-content: center;
   box-sizing: border-box;
   gap: 10px;
-  height: 100%;
   font-size: 14px;
 }
 
@@ -615,8 +618,8 @@ main {
 }
 
 .botao_cadastro {
-  width: 120px;
-  height: 40px;
+  width: max-content;
+  padding: 8px;
   border-radius: 8px;
   background-color: var(--cor-destaque);
   color: #ffffff;
@@ -1355,14 +1358,11 @@ nav {
 
 .nome_produto {
   padding-top: 3px;
-  font-size: 0.9rem;
+  font-size: 1.1rem;
   font-weight: bold;
-  font-family: arial;
   flex-grow: 1;
-  margin-top: 8px;
   width: 100%;
   font-family: Arial, Helvetica, sans-serif;
-  font-weight: none;
   padding-bottom: 5px;
 }
 

@@ -38,7 +38,12 @@ export default function (props) {
     let produto = colecao.find((item) => item.id === perfume.id);
 
     if (!produto) {
-      produto = { id: perfume.id, nome: perfume.nome, precoVenda: perfume.precoVenda, quantidade: 0 };
+      produto = {
+        id: perfume.id,
+        nome: perfume.nome,
+        precoVenda: perfume.precoVenda,
+        quantidade: 0,
+      };
 
       colecao.push(produto);
     }
@@ -90,14 +95,20 @@ export default function (props) {
     atualizarDetalhes();
   }, []);
 
-  const componente = (props.token ?? "") != "" ? <Favorito favorito={favorito} alterarFavorito={alterarFavorito} /> : null;
+  const componente =
+    (props.token ?? "") != "" ? (
+      <Favorito favorito={favorito} alterarFavorito={alterarFavorito} />
+    ) : null;
 
   return (
     <main className="detalhe">
       <div className="card_descricao">
         <div className="moldura">
           <h1>
-            <img className="foto_dior" src={`${Config.urlApi}perfume/obter-imagem/${id}`}></img>
+            <img
+              className="foto_dior"
+              src={`${Config.urlApi}perfume/obter-imagem/${id}`}
+            ></img>
           </h1>
         </div>
         <div className="descricao">
@@ -108,10 +119,18 @@ export default function (props) {
             <Estrelas nivel={perfume && perfume.mediaAvaliacao} />
             {componente}
           </div>
-          <div className="descricao_produto">{perfume && perfume.descricao}</div>
+          <div className="descricao_produto">
+            {perfume && perfume.descricao}
+          </div>
         </div>
       </div>
-      <CardPreco continuar={false} preco={perfume && perfume.precoVenda} parcelas={props.quantidadeParcelas} estoque={perfume && perfume.estoque} adicionarProdutoCarrinho={adicionarProdutoCarrinho} />
+      <CardPreco
+        continuar={false}
+        preco={perfume && perfume.precoVenda}
+        parcelas={props.quantidadeParcelas}
+        estoque={perfume && perfume.estoque}
+        adicionarProdutoCarrinho={adicionarProdutoCarrinho}
+      />
     </main>
   );
 }
