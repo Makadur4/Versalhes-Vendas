@@ -124,8 +124,8 @@ export default function (props) {
 
     return (
       <div key={item.id} className={moldura}>
-        <div className="produto_pedido">
-          <div className="moldura_perfume_pedido">
+        <div className="produto_pedido_dados">
+          <div className="moldura_perfume_pedido_dados">
             <img src={`${Config.urlApi}perfume/obter-imagem/${item.id}`}></img>
           </div>
           <span>{item.nome}</span>

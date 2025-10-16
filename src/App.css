@@ -284,6 +284,16 @@ main {
   align-items: center;
 }
 
+.produto_pedido_dados {
+  display: flex;
+  align-items: center;
+  gap:10px
+}
+
+.produto_pedido_dados span{
+  width: 100%;
+}
+
 .quantidade_detalhe_pedido{
   display: flex;
   justify-content: center;
@@ -341,6 +351,20 @@ main {
 }
 
 .moldura_perfume_pedido img {
+  height: 60px;
+}
+
+.moldura_perfume_pedido_dados{
+  height: 70px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  background-color: var(--cor-foto);
+}
+
+.moldura_perfume_pedido_dados img{
   height: 60px;
 }
 
