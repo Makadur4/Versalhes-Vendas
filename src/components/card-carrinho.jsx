@@ -22,11 +22,14 @@ export default function CardCarrinho(props) {
     <div key={props.id} className="moldura_produto">
       <div className="moldura_carrinho">
         <h1>
-          <img className="foto_dior_carrinho" src={`${Config.urlApi}perfume/obter-imagem/${props.id}`} />
+          <img
+            className="foto_dior_carrinho"
+            src={`${Config.urlApi}perfume/obter-imagem/${props.id}`}
+          />
         </h1>
       </div>
       <div className="descricao_carrinho">
-        <div className="nome_produto">
+        <div className="nome_produto_carrinho">
           <p>{props.nome}</p>
           <div className="opcao_produto">
             <select

@@ -112,7 +112,7 @@ export default function (props) {
           </h1>
         </div>
         <div className="descricao">
-          <div className="nome_produto">
+          <div className="nome_produto_descricao">
             <p>{perfume && perfume.nome}</p>
           </div>
           <div className="icones_produto">
