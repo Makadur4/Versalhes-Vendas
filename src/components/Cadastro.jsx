@@ -210,6 +210,7 @@ export default function (props) {
                 }}
                 required
               ></input>
+              {(props.token ?? "") == "" && <>
               <label className="label" htmlFor="senha">
                 Senha:
               </label>
@@ -236,6 +237,7 @@ export default function (props) {
                 }}
                 required
               ></input>
+              </>}
             </div>
           </div>
           <button type="submit" className="botao_cadastro">
