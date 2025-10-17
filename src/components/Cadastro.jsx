@@ -141,7 +141,7 @@ export default function (props) {
               </label>
               <input
                 type="text"
-                className="input3"
+                className="input5"
                 id="data_nascimento"
                 value={dataNascimento}
                 onChange={(e) => {
