@@ -19,7 +19,7 @@ import ConclusaoPedido from "./components/conclusao-pedido";
 import Pedidos from "./components/pedidos";
 import DetalhePedido from "./components/detalhe-pedido";
 import Login from "./components/login";
-import Cadastro from "./components/cadastro";
+import Cadastro from "./components/Cadastro";
 import RecuperarSenha from "./components/recuperar-senha";
 import AlterarSenha from "./components/alterar-senha";
 import ConfirmacaoSenha from "./components/confirmacao-senha";

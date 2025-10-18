@@ -34,8 +34,10 @@ export default function () {
           <ul>{lista}</ul>
           <div className="contato">
             <span>Não conseguiu resolver seu problema? Fale com um de nossos consultores:</span>
-            <button className="botao_whats">WhatsApp</button>
-            {/*https://wa.me/5511999999999*/}
+            <a href="https://wa.me/5511999999999"
+              target="_blank">
+              <button className="botao_whats">WhatsApp</button>
+            </a>            
           </div>
         </div>
       </div>
