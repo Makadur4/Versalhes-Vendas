@@ -11,7 +11,7 @@ function EtapaPedido(props) {
   const classe = props.concluida ? " etapa_concluida" : "";
 
   return (
-    <div>
+    <div className="moldura_etapa">
       <div className={`etapa_pedido${classe}`}>
         <img src={`/img/etapa_${props.etapa}.png`}></img>
       </div>

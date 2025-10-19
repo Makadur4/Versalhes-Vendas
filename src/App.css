@@ -302,8 +302,9 @@ main {
 
 .quantidade_detalhe_pedido{
   display: flex;
-  justify-content: center;
+  justify-content: end;
   flex: 1;
+  padding-right: 30px;
 }
 
 .produto_pedido_detalhe{
@@ -316,6 +317,14 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.moldura_etapa{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
 }
 
 .etapa_pedido {
