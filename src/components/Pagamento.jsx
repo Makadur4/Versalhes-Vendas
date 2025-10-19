@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import PedidoService from "../services/pedido-service";
 
 import Config from "../config";
+import { formatarCartao, formatarValidade } from "../utils/formatacao-util";
 
 export default function (props) {
   const [bandeiraCartao, setBandeiraCartao] = useState("");
@@ -45,7 +46,9 @@ export default function (props) {
   function selecionarCondicaoPagamento(e) {
     setCondicaoPagamento(e.target.value);
 
-    const condicaoSelecionada = props.condicoesPagamento.find((item) => item.id.toString() == e.target.value);
+    const condicaoSelecionada = props.condicoesPagamento.find(
+      (item) => item.id.toString() == e.target.value
+    );
 
     setPercentualAcrescimo(condicaoSelecionada.percentualAcrescimo);
   }
@@ -69,18 +72,31 @@ export default function (props) {
         };
       });
 
-      const pedido = await PedidoService.incluirPedido(props.token, props.frete.id, condicaoPagamento, dadosPagamento, itensPedido);
+      const pedido = await PedidoService.incluirPedido(
+        props.token,
+        props.frete.id,
+        condicaoPagamento,
+        dadosPagamento,
+        itensPedido
+      );
 
       navigate(`/conclusao-pedido/${pedido.id}`);
     } catch (erro) {
-      alert(erro.obterMensagem());
+      if (erro.codigo == 400) {
+        alert(
+          "Compra NÃO aprovada pela administradora de cartões. Por favor, verifique os dados e tente novamente!"
+        );
+      } else {
+        alert(erro.obterMensagem());
+      }
     }
   }
 
   const listaParcelas = props.condicoesPagamento.map((item) => {
     return (
       <option key={item.id} value={item.id}>
-        {item.quantidadeParcelas}x {item.percentualAcrescimo == 0 ? "" : "(c/ juros)"}{" "}
+        {item.quantidadeParcelas}x{" "}
+        {item.percentualAcrescimo == 0 ? "" : "(c/ juros)"}{" "}
       </option>
     );
   });
@@ -94,10 +110,13 @@ export default function (props) {
       maximumFractionDigits: 2,
     })}`;
 
-    const precoTotal = `R$ ${(item.precoVenda * item.quantidade).toLocaleString("pt-BR", {
-      minimumFractionDigits: 2,
-      maximumFractionDigits: 2,
-    })}`;
+    const precoTotal = `R$ ${(item.precoVenda * item.quantidade).toLocaleString(
+      "pt-BR",
+      {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2,
+      }
+    )}`;
 
     valorTotal += item.precoVenda * item.quantidade;
 
@@ -105,8 +124,8 @@ export default function (props) {
 
     return (
       <div key={item.id} className={moldura}>
-        <div className="produto_pedido">
-          <div className="moldura_perfume_pedido">
+        <div className="produto_pedido_dados">
+          <div className="moldura_perfume_pedido_dados">
             <img src={`${Config.urlApi}perfume/obter-imagem/${item.id}`}></img>
           </div>
           <span>{item.nome}</span>
@@ -127,7 +146,7 @@ export default function (props) {
     <main className="detalhe">
       <div className="card_pagamento ">
         <div className="dados_cartao">
-          <div className="coluna_input">
+          <form className="coluna_input">
             <div className="input_pagamento">
               <span>Bandeira:</span>
               <select
@@ -149,8 +168,9 @@ export default function (props) {
                 type="text"
                 className="input_200"
                 value={numeroCartao}
+                required
                 onChange={(e) => {
-                  setNumeroCartao(e.target.value);
+                  setNumeroCartao(formatarCartao(e.target.value));
                 }}
               ></input>
             </div>
@@ -159,10 +179,12 @@ export default function (props) {
               <input
                 type="text"
                 className="input_200"
+                maxLength={30}
                 value={nomeCartao}
                 onChange={(e) => {
                   setNomeCartao(e.target.value);
                 }}
+                required
               ></input>
             </div>
             <div className="input_pagamento">
@@ -171,8 +193,9 @@ export default function (props) {
                 type="text"
                 className="input_150"
                 value={dataValidade}
+                required
                 onChange={(e) => {
-                  setDataValidade(e.target.value);
+                  setDataValidade(formatarValidade(e.target.value));
                 }}
               ></input>
             </div>
@@ -181,17 +204,25 @@ export default function (props) {
               <input
                 type="text"
                 className="input_150"
+                maxLength={3}
                 value={codigoSeguranca}
+                required
                 onChange={(e) => {
                   setCodigoSeguranca(e.target.value);
                 }}
               ></input>
             </div>
-          </div>
+          </form>
           <div className="coluna_input">
             <div className="input_pagamento">
               <span>Número de parcelas:</span>
-              <select type="text" className="input_100" value={condicaoPagamento} onChange={selecionarCondicaoPagamento}>
+              <select
+                type="text"
+                className="input_100"
+                value={condicaoPagamento}
+                required
+                onChange={selecionarCondicaoPagamento}
+              >
                 {listaParcelas}
               </select>
             </div>

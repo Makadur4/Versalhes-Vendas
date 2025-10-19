@@ -65,6 +65,16 @@ export default function (props) {
   }, [endereco]);
 
   function confirmarOperacao() {
+    if (!endereco) {
+      alert("Por favor, informe o endereço de entrega!");
+      return;
+    }
+
+    if (freteId == "") {
+      alert("Por favor, escolha uma forma de entrega!");
+      return;
+    }
+
     const frete = fretes.find((item) => item.id.toString() == freteId);
 
     props.setFrete(frete);
@@ -80,10 +90,13 @@ export default function (props) {
         <div className="endereço">
           <span>
             {endereco && endereco.endereco}, {endereco && endereco.numero}
-            {endereco && endereco.complemento != "" && ` - ${endereco.complemento}`}
+            {endereco &&
+              endereco.complemento != "" &&
+              ` - ${endereco.complemento}`}
           </span>
           <span>
-            {endereco && endereco.bairro} | {endereco && endereco.municipio} – {endereco && endereco.uf}
+            {endereco && endereco.bairro} | {endereco && endereco.municipio} –{" "}
+            {endereco && endereco.uf}
           </span>
           <span>{endereco && endereco.cep}</span>
           <span>{endereco && endereco.responsavel}</span>
@@ -149,10 +162,13 @@ export default function (props) {
       maximumFractionDigits: 2,
     })}`;
 
-    const precoTotal = `R$ ${(item.precoVenda * item.quantidade).toLocaleString("pt-BR", {
-      minimumFractionDigits: 2,
-      maximumFractionDigits: 2,
-    })}`;
+    const precoTotal = `R$ ${(item.precoVenda * item.quantidade).toLocaleString(
+      "pt-BR",
+      {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2,
+      }
+    )}`;
 
     valorProdutos += item.precoVenda * item.quantidade;
 
@@ -160,8 +176,8 @@ export default function (props) {
 
     return (
       <div key={item.id} className={moldura}>
-        <div className="produto_pedido">
-          <div className="moldura_perfume_pedido">
+        <div className="produto_pedido_dados">
+          <div className="moldura_perfume_pedido_dados">
             <img src={`${Config.urlApi}perfume/obter-imagem/${item.id}`}></img>
           </div>
           <span>{item.nome}</span>

@@ -23,12 +23,15 @@ export default function () {
   }
 
   return (
-    <main className="recuperar_senha">
+    <main className="main_centralizada">
       <form className="recuperar_senha" onSubmit={confirmarOperacao}>
         <div>
           <div className="texto_redefinir_senha">
             <img className="cadiado" src="/svg/icone_cadiado.svg" />
-            <img className="redefini_senha_svg" src="/svg/texto_redefinir_senha.svg" />
+            <img
+              className="redefini_senha_svg"
+              src="/svg/texto_redefinir_senha.svg"
+            />
           </div>
           <label className="label" htmlFor="email">
             Digite o E-mail de cadastro para redefinir a senha:

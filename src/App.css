@@ -54,6 +54,19 @@ main {
   flex-grow: 1;
 }
 
+.main_centralizado{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.main_centralizada{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 /* BOTÕES */
 
 .grupo_botoes {
@@ -66,21 +79,19 @@ main {
 .botao_destaque {
   color: #ffffff;
   background-color: var(--cor-destaque);
-  height: 30px;
   border-radius: 5px;
   border: solid;
   border-width: 1px;
-  width: 80px;
+  padding: 8px;
   font-size: 15px;
 }
 
 .botao_branco {
   background-color: #ffffff;
-  height: 30px;
+  padding: 8px;
   border-radius: 5px;
   border: solid;
   border-width: 1px;
-  width: 80px;
   font-size: 15px;
 }
 
@@ -137,12 +148,11 @@ main {
 .div_filtro {
   background-color: #ffffff;
   min-width: 240px;
-  height: 600px;
   margin-left: 10px;
 }
 
 .conteudo_card {
-  display: block;
+  width: 100%;
 }
 
 .valor_produto_carrinho {
@@ -168,7 +178,7 @@ main {
   gap: 15px;
 }
 
-.nome_produto select {
+.nome_produto_carrinho select {
   height: 30px;
   border-radius: 5px;
   border: solid;
@@ -178,11 +188,11 @@ main {
 }
 
 .moldura_produto {
+  box-sizing: border-box;
   display: flex;
   gap: 20px;
   border: solid;
   padding: 20px;
-  height: 121px;
   width: 100%;
   margin-bottom: 25px;
 }
@@ -235,7 +245,6 @@ main {
   justify-content: center;
   box-sizing: border-box;
   gap: 10px;
-  height: 100%;
   font-size: 14px;
 }
 
@@ -277,16 +286,45 @@ main {
 
 .produto_pedido span {
   font-size: 14px;
-  width: 172px;
-  height: 80px;
   display: flex;
   align-items: center;
+}
+
+.produto_pedido_dados {
+  display: flex;
+  align-items: center;
+  gap:10px
+}
+
+.produto_pedido_dados span{
+  width: 100%;
+}
+
+.quantidade_detalhe_pedido{
+  display: flex;
+  justify-content: end;
+  flex: 1;
+  padding-right: 30px;
+}
+
+.produto_pedido_detalhe{
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 .etapas_pedido {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.moldura_etapa{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
 }
 
 .etapa_pedido {
@@ -319,7 +357,7 @@ main {
 
 .moldura_perfume_pedido {
   height: 80px;
-  width: 100px;
+  width: 160px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -328,6 +366,34 @@ main {
 }
 
 .moldura_perfume_pedido img {
+  height: 60px;
+}
+
+.moldura_perfume_pedido_dados{
+  height: 70px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  background-color: var(--cor-foto);
+}
+
+.moldura_perfume_pedido_dados img{
+  height: 60px;
+}
+
+.moldura_perfume_detalhe_pedido{
+  height: 80px;
+  width: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  background-color: var(--cor-foto);
+}
+
+.moldura_perfume_detalhe_pedido img{
   height: 60px;
 }
 
@@ -428,7 +494,7 @@ main {
 .card_confirmacao_pedido {
   background-color: #f2f2f2;
   width: 500px;
-  height: 415px;
+  min-height: 517px;
   display: flex;
   flex-direction: column;
   padding-left: 40px;
@@ -438,13 +504,13 @@ main {
   border-radius: 15px;
   box-sizing: border-box;
   gap: 20px;
-  font-size: 14px;
+  font-size: 16px;
 }
 
 .card_pedido {
   background-color: #f2f2f2;
   width: 410px;
-  height: 415px;
+  min-height: 415px;
   display: flex;
   flex-direction: column;
   padding-left: 40px;
@@ -472,11 +538,10 @@ main {
 .card_seus_pedidos {
   background-color: #f2f2f2;
   width: 500px;
-  height: 415px;
+  min-height: 415px;
   display: flex;
   flex-direction: column;
-  padding-left: 40px;
-  padding-right: 40px;
+  padding: 40px ;
   justify-content: center;
   border-radius: 15px;
   box-sizing: border-box;
@@ -505,11 +570,9 @@ main {
 .card_entrega_pedido {
   background-color: #f2f2f2;
   width: 935px;
-  height: 505px;
   display: flex;
   flex-direction: column;
-  padding-left: 40px;
-  padding-right: 40px;
+  padding:30px;
   justify-content: center;
   border-radius: 15px;
   box-sizing: border-box;
@@ -615,13 +678,12 @@ main {
 }
 
 .botao_cadastro {
-  width: 120px;
-  height: 40px;
+  width: max-content;
+  padding: 8px;
   border-radius: 8px;
   background-color: var(--cor-destaque);
   color: #ffffff;
   border: none;
-  font-size: 16px;
 }
 
 .moldura_carrinho {
@@ -689,6 +751,14 @@ main {
 .label {
   display: block;
   margin-bottom: 5px;
+}
+
+.input5 {
+  width: 100px;
+  height: 35px;
+  border-radius: 10px;
+  border-width: 1px;
+  margin-bottom: 20px;
 }
 
 .input4 {
@@ -904,6 +974,7 @@ main {
 }
 
 .caixa_frete {
+  width: 100%;
   border-radius: 5px;
   border-width: 1px;
   height: 27px;
@@ -939,6 +1010,9 @@ main {
 }
 
 .descricao_carrinho {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   flex: 1;
 }
 
@@ -996,7 +1070,8 @@ div h1 {
 .frete {
   display: flex;
   gap: 20px;
-  padding: 20px;
+  padding-top: 20px;
+  padding-bottom: 20px;
   box-sizing: border-box;
   justify-content: center;
   align-items: center;
@@ -1005,7 +1080,7 @@ div h1 {
 .card_descricao {
   flex: 3;
   background-color: #f2f2f2;
-  height: 450px;
+  min-height: 450px;
   display: flex;
   padding: 20px;
   gap: 25px;
@@ -1039,7 +1114,7 @@ div h1 {
 .card_dados_pedido {
   background-color: #f2f2f2;
   width: 410px;
-  height: 505px;
+  min-height: 505px;
   display: flex;
   flex-direction: column;
   padding-left: 40px;
@@ -1166,10 +1241,11 @@ nav {
 .card {
   background-color: var(--cor-card);
   width: 240px;
-  height: 340px;
+  min-height: 340px;
   border-radius: 8px;
   display: flex;
   flex-direction: column;
+  gap: 5px;
   align-items: center;
   padding: 32px;
   box-sizing: border-box;
@@ -1190,7 +1266,7 @@ nav {
   padding: 35px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 15px;
   box-sizing: border-box;
   font-family: Arial, Helvetica, sans-serif;
 }
@@ -1263,7 +1339,7 @@ nav {
 }
 
 .card_links_duvida {
-  height: 385px;
+  min-height: 335px;
 }
 
 .titulo {
@@ -1353,17 +1429,46 @@ nav {
   width: 100%;
 }
 
-.nome_produto {
-  padding-top: 3px;
-  font-size: 0.9rem;
+.descricao{
+  padding-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.nome_produto_descricao {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-size: 1.1rem;
   font-weight: bold;
-  font-family: arial;
-  flex-grow: 1;
-  margin-top: 8px;
   width: 100%;
   font-family: Arial, Helvetica, sans-serif;
-  font-weight: none;
+}
+
+.nome_produto_descricao p {
+  margin: 0px;
+}
+
+.nome_produto{
+  font-weight: bold;
+  padding-top: 5px;
   padding-bottom: 5px;
+}
+
+.nome_produto_carrinho{
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  font-weight: bold;
+}
+
+.nome_produto p{
+  margin: 0px;
+}
+
+.nome_produto_carrinho p{
+  margin: 0px;
 }
 
 .preco_produto {

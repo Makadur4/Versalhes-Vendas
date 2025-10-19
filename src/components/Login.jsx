@@ -24,7 +24,9 @@ export default function (props) {
       navigate(`/${origem}`);
     } catch (erro) {
       if (erro.codigo == 404) {
-        alert("Usuário não encontrado. Por favor, verifique os dados e tente novamente!");
+        alert(
+          "Usuário não encontrado. Por favor, verifique os dados e tente novamente!"
+        );
       } else {
         alert(erro.obterMensagem());
       }
@@ -32,7 +34,7 @@ export default function (props) {
   }
 
   return (
-    <main>
+    <main className="main_centralizada">
       <form className="login" onSubmit={concluirOperacao}>
         <div>
           <div className="foto_perfil">

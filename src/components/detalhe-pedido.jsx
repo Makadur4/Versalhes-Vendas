@@ -11,7 +11,7 @@ function EtapaPedido(props) {
   const classe = props.concluida ? " etapa_concluida" : "";
 
   return (
-    <div>
+    <div className="moldura_etapa">
       <div className={`etapa_pedido${classe}`}>
         <img src={`/img/etapa_${props.etapa}.png`}></img>
       </div>
@@ -72,12 +72,16 @@ export default function (props) {
   const listaProdutos = pedido?.itensPedido.map((item) => {
     return (
       <div key={item.id} className="primeira_moldura">
-        <div className="produto_pedido">
-          <div className="moldura_perfume_pedido">
-            <img src={`${Config.urlApi}perfume/obter-imagem/${item.perfume.id}`}></img>
+        <div className="produto_pedido_detalhe">
+          <div className="moldura_perfume_detalhe_pedido">
+            <img
+              src={`${Config.urlApi}perfume/obter-imagem/${item.perfume.id}`}
+            ></img>
           </div>
           <span>{item.perfume.nome}</span>
-          <span>Qtd.:{item.quantidade}</span>
+          <span className="quantidade_detalhe_pedido">
+            Qtd.:{item.quantidade}
+          </span>
         </div>
       </div>
     );
@@ -89,11 +93,17 @@ export default function (props) {
         <div className="cancelar_pedido">
           <span>Número do pedido: {pedido && pedido.id}</span>
           <div>
-            <span>Previsão de Entrega: {pedido && converterDataEnPt(pedido.dataEntrega)}</span>
+            <span>
+              Previsão de Entrega:{" "}
+              {pedido && converterDataEnPt(pedido.dataEntrega)}
+            </span>
           </div>
           <div>
             {pedido && pedido.status < 3 ? (
-              <button className="botao_cancelar_pedido" onClick={cancelarPedido}>
+              <button
+                className="botao_cancelar_pedido"
+                onClick={cancelarPedido}
+              >
                 Cancelar Pedido
               </button>
             ) : null}
@@ -102,13 +112,29 @@ export default function (props) {
         {listaProdutos}
         <div className="primeira_moldura">
           <div className="etapas_pedido">
-            <EtapaPedido EtapaPedido="Pedido Realizado" etapa={1} concluida={pedido && pedido.status > 0} />
+            <EtapaPedido
+              EtapaPedido="Pedido Realizado"
+              etapa={1}
+              concluida={pedido && pedido.status > 0}
+            />
             <LinhaEtapa concluida={pedido && pedido.status > 0} />
-            <EtapaPedido EtapaPedido="Pedido Aprovado" etapa={2} concluida={pedido && pedido.status > 1} />
+            <EtapaPedido
+              EtapaPedido="Pedido Aprovado"
+              etapa={2}
+              concluida={pedido && pedido.status > 1}
+            />
             <LinhaEtapa concluida={pedido && pedido.status > 1} />
-            <EtapaPedido EtapaPedido="Pedido Despachado" etapa={3} concluida={pedido && pedido.status > 2} />
+            <EtapaPedido
+              EtapaPedido="Pedido Despachado"
+              etapa={3}
+              concluida={pedido && pedido.status > 2}
+            />
             <LinhaEtapa concluida={pedido && pedido.status > 2} />
-            <EtapaPedido EtapaPedido="Pedido Entregue" etapa={3} concluida={pedido && pedido.status > 3} />
+            <EtapaPedido
+              EtapaPedido="Pedido Entregue"
+              etapa={3}
+              concluida={pedido && pedido.status > 3}
+            />
           </div>
         </div>
       </div>

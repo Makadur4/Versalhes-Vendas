@@ -65,3 +65,32 @@ export function converterDataEnPt(data) {
   const [ano, mes, dia] = data.split("-");
   return `${dia.padStart(2, "0")}/${mes.padStart(2, "0")}/${ano}`;
 }
+
+export function formatarCartao(valor) {
+  let numeros = valor.replace(/\D/g, "");
+
+  if (numeros.length > 16) {
+    numeros = numeros.slice(0, 16);
+  }
+
+  const formatado = numeros.replace(/(.{4})/g, "$1-");
+
+  return formatado.endsWith("-")
+    ? formatado.slice(0, -1)
+    : formatado;
+}
+
+export function formatarValidade(valor) {
+  let numeros = valor.replace(/\D/g, "");
+
+  if (numeros.length > 4) {
+    numeros = numeros.slice(0, 4);
+  }
+
+  if (numeros.length > 2) {
+    return numeros.replace(/(\d{2})(\d{1,2})/, "$1/$2");
+  }
+
+  return numeros;
+}
+

@@ -32,8 +32,10 @@ export default function (props) {
     return (
       <div key={item.id} className="primeira_moldura">
         <div className="produto_pedido">
-          <div className="moldura_perfume_pedido">
-            <img src={`${Config.urlApi}perfume/obter-imagem/${item.perfume.id}`}></img>
+          <div className="moldura_perfume_detalhe_pedido">
+            <img
+              src={`${Config.urlApi}perfume/obter-imagem/${item.perfume.id}`}
+            ></img>
           </div>
           <span>{item.perfume.nome}</span>
           <span>Qtd.:{item.quantidade}</span>
@@ -88,7 +90,10 @@ export default function (props) {
                     maximumFractionDigits: 2,
                   })}
               </span>
-              <span>{pedido && `${pedido.dadosPagamento.bandeiraCartao}...${pedido.dadosPagamento.numeroCartao}`}</span>
+              <span>
+                {pedido &&
+                  `${pedido.dadosPagamento.bandeiraCartao}...${pedido.dadosPagamento.numeroCartao}`}
+              </span>
               <span>{pedido && pedido.dadosPagamento.quantidadeParcelas}</span>
             </div>
           </div>
@@ -97,11 +102,16 @@ export default function (props) {
           <div className="coluna_dados">
             <div className="endereço">
               <span>
-                {pedido && pedido.enderecoEntrega.endereco}, {pedido && pedido.enderecoEntrega.numero}
-                {pedido && pedido.enderecoEntrega.complemento != "" && ` - ${pedido.enderecoEntrega.complemento}`}
+                {pedido && pedido.enderecoEntrega.endereco},{" "}
+                {pedido && pedido.enderecoEntrega.numero}
+                {pedido &&
+                  pedido.enderecoEntrega.complemento != "" &&
+                  ` - ${pedido.enderecoEntrega.complemento}`}
               </span>
               <span>
-                {pedido && pedido.enderecoEntrega.bairro} | {pedido && pedido.enderecoEntrega.municipio} – {pedido && pedido.enderecoEntrega.uf}
+                {pedido && pedido.enderecoEntrega.bairro} |{" "}
+                {pedido && pedido.enderecoEntrega.municipio} –{" "}
+                {pedido && pedido.enderecoEntrega.uf}
               </span>
               <span>{pedido && pedido.enderecoEntrega.cep}</span>
               <span>{pedido && pedido.enderecoEntrega.responsavel}</span>

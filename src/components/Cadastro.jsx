@@ -1,7 +1,11 @@
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
-import { formatarData, formatarCpf, formatarTelefone } from "../utils/formatacao-util";
+import {
+  formatarData,
+  formatarCpf,
+  formatarTelefone,
+} from "../utils/formatacao-util";
 
 import ClienteService from "../services/cliente-service";
 
@@ -57,13 +61,30 @@ export default function (props) {
       }
 
       if ((props.token ?? "") == "") {
-        await ClienteService.incluirCliente(cpf, nome, dataNascimento, sexo, telefone, email, senha);
+        await ClienteService.incluirCliente(
+          cpf,
+          nome,
+          dataNascimento,
+          sexo,
+          telefone,
+          email,
+          senha
+        );
 
         alert("Cadastro concluído com sucesso!");
 
         navigate(`/login?o=${origem}`);
       } else {
-        await ClienteService.alterarCliente(props.token, cpf, nome, dataNascimento, sexo, telefone, email, senha);
+        await ClienteService.alterarCliente(
+          props.token,
+          cpf,
+          nome,
+          dataNascimento,
+          sexo,
+          telefone,
+          email,
+          senha
+        );
 
         alert("Cadastro alterado com sucesso!");
 
@@ -71,7 +92,9 @@ export default function (props) {
       }
     } catch (erro) {
       if (erro.codigo == 404) {
-        alert("Cadastro não encontrado. Por favor, verifique o link de acesso!");
+        alert(
+          "Cadastro não encontrado. Por favor, verifique o link de acesso!"
+        );
       } else {
         alert(erro.obterMensagem());
       }
@@ -79,7 +102,7 @@ export default function (props) {
   }
 
   return (
-    <main className="cadastro">
+    <main className="main_centralizada">
       <form className="cadastro" onSubmit={concluirOperacao}>
         <div className="foto_perfil">
           <img src="/svg/icone_perfil_preto.svg" />
@@ -118,7 +141,7 @@ export default function (props) {
               </label>
               <input
                 type="text"
-                className="input3"
+                className="input5"
                 id="data_nascimento"
                 value={dataNascimento}
                 onChange={(e) => {
@@ -187,11 +210,12 @@ export default function (props) {
                 }}
                 required
               ></input>
+              {(props.token ?? "") == "" && <>
               <label className="label" htmlFor="senha">
                 Senha:
               </label>
               <input
-                type="text"
+                type="password"
                 className="input"
                 id="senha"
                 value={senha}
@@ -204,7 +228,7 @@ export default function (props) {
                 Confirmação:
               </label>
               <input
-                type="text"
+                type="password"
                 className="input"
                 id="confirmacao"
                 value={confirmacao}
@@ -213,6 +237,7 @@ export default function (props) {
                 }}
                 required
               ></input>
+              </>}
             </div>
           </div>
           <button type="submit" className="botao_cadastro">

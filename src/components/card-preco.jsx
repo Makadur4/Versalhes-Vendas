@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 
 import ApoioService from "../services/apoio-service";
+import { formatarCep } from "../utils/formatacao-util";
 
 export default function (props) {
   const [cep, setCep] = useState("");
@@ -92,8 +93,9 @@ export default function (props) {
           className="caixa_frete"
           type="text"
           value={cep}
+          maxLength={9}
           onChange={(e) => {
-            setCep(e.target.value);
+            setCep(formatarCep(e.target.value));
           }}
         ></input>
         <button onClick={calcularFrete}>OK</button>
