@@ -88,6 +88,7 @@ export default function (props) {
                 className="input3"
                 id="cep"
                 value={cep}
+                maxLength={9}
                 onChange={(e) => {
                   setCep(formatarCep(e.target.value));
                 }}

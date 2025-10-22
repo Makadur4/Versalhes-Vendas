@@ -1339,7 +1339,16 @@ nav {
 }
 
 .card_links_duvida {
+  width: 765px;
   min-height: 335px;
+  background-color: var(--cor-menu);
+  border-radius: 24px;
+  padding: 35px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .titulo {

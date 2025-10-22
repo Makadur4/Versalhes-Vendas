@@ -9,7 +9,9 @@ function TopicoAjuda(props) {
     <>
       <li>
         <img
-          src={status ? "/svg/icone_seta_baixo.svg" : "/svg/icone_seta_direita.svg"}
+          src={
+            status ? "/svg/icone_seta_baixo.svg" : "/svg/icone_seta_direita.svg"
+          }
           onClick={() => {
             setstatus((prev) => !prev);
           }}
@@ -22,22 +24,26 @@ function TopicoAjuda(props) {
 }
 
 export default function () {
-  const lista = AjudaService.obterTopicosAjuda().map((item) => <TopicoAjuda titulo={item.titulo} descricao={item.descricao} />);
+  const lista = AjudaService.obterTopicosAjuda().map((item) => (
+    <TopicoAjuda titulo={item.titulo} descricao={item.descricao} />
+  ));
 
   return (
     <main className="main_links">
-      <div className="card_links card_links_duvida">
+      <div className="card_links_duvida">
         <div className="titulo">
           <h2>Ajuda / Suporte</h2>
         </div>
         <div className="conteudo">
           <ul>{lista}</ul>
           <div className="contato">
-            <span>Não conseguiu resolver seu problema? Fale com um de nossos consultores:</span>
-            <a href="https://wa.me/5511999999999"
-              target="_blank">
+            <span>
+              Não conseguiu resolver seu problema? Fale com um de nossos
+              consultores:
+            </span>
+            <a href="https://wa.me/5511999999999" target="_blank">
               <button className="botao_whats">WhatsApp</button>
-            </a>            
+            </a>
           </div>
         </div>
       </div>
